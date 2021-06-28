@@ -1,1 +1,10 @@
 com\mycompany\mavenproject2\NewSessionBean.class
+DB\DBConnector.class
+LoginProcess\LoginProcess.class
+DataLayer\User.class
+Enums\LoginType.class
+DataLayer\Show.class
+connect\net\sqlitetutorial\Connect.class
+DataLayer\Seat.class
+Enums\UserType.class
+com\mycompany\mavenproject2\Pages\ManagedBeans\LoginBean.class
