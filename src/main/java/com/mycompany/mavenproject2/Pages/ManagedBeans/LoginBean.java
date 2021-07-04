@@ -1,17 +1,20 @@
 package com.mycompany.mavenproject2.Pages.ManagedBeans;
 
 
-import DataLayer.User;
+
 import Enums.LoginType;
-import Enums.UserType;
-import LoginProcess.LoginProcess;
+
+import com.mycompany.mavenproject2.DataLayer.User;
+import com.mycompany.mavenproject2.Enums.UserType;
+import com.mycompany.mavenproject2.LoginProcess.LoginProcess;
 import java.io.Serializable;
 import javax.enterprise.context.*;
+import javax.faces.view.ViewScoped;
 
 import javax.inject.Named; 
 
 @Named("loginBean")
-@SessionScoped
+@ViewScoped
 public class LoginBean implements Serializable{
     
     public String yyy(){
@@ -20,7 +23,13 @@ public class LoginBean implements Serializable{
     }
 
     public LoginBean(){
-        this.loginProcess = new LoginProcess();
+        try{
+            this.loginProcess = new LoginProcess();
+
+        }
+        catch(Exception e){
+            
+        }
     }
 
     //services
@@ -33,15 +42,16 @@ public class LoginBean implements Serializable{
     private UserType userType;
     private String password;
     private String email= " hhhhh    ";
-    private LoginType loginType;
+    private LoginType loginType = LoginType.SIGNIN;
 
-    public void onSubmit(){
+    public String onSubmit(){
         if (loginType ==LoginType.SIGNIN){
-            loginProcess.signIn(new User());
+            loginProcess.signIn(new User(id, name, password, email));
         }
-        else if (loginType == LoginType.SINGUP){
-            loginProcess.signUp(new User());
+        else if (loginType == LoginType.SIGNUP){
+            loginProcess.signUp(new User(id, name, password, email));
         }
+        return "showsList.xhtml";
     }
 
 
@@ -99,6 +109,35 @@ public class LoginBean implements Serializable{
 
     public void setLoginType(LoginType loginType) {
         this.loginType = loginType;
+    }
+    
+    public boolean isNewUser(){
+        
+        if(loginType == LoginType.SIGNIN){
+            return false;
+        }
+        return true;
+    }
+    
+        private boolean enabled;
+
+    public void toggle() {
+        enabled = !enabled;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+    
+    public void changeLoginType(){
+        loginType = LoginType.SIGNUP;
+        System.out.println("hello hellllllllllllllllllllll");
+        if(loginType == LoginType.SIGNIN){
+            loginType = LoginType.SIGNUP;
+        }
+        else if(loginType == LoginType.SIGNUP){
+            loginType = LoginType.SIGNIN;
+        }
     }
 
 

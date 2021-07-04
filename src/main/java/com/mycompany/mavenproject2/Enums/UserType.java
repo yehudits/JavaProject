@@ -1,6 +1,7 @@
-package Enums;
+package com.mycompany.mavenproject2.Enums;
 
-import DataLayer.User;
+
+
 
 public enum UserType {
     ORGANIZER(0, "organizer"),
