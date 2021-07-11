@@ -7,6 +7,7 @@ package com.mycompany.mavenproject2.Pages.ManagedBeans;
 
 import com.mycompany.mavenproject2.DB.DBConnector;
 import com.mycompany.mavenproject2.DataLayer.Show;
+import com.mycompany.mavenproject2.Services.ShowDetailsService;
 import com.mycompany.mavenproject2.Services.ShowsListService;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ public class ShowsListBean implements Serializable{
                 show = s;
             }
         }
-        this.selectedShow.setSelectedShow(show);
+        ShowDetailsService.setShow(show);
         return "showDetails.xhtml";
     }
 

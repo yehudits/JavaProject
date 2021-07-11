@@ -8,6 +8,7 @@ package com.mycompany.mavenproject2.Pages.ManagedBeans;
 import com.mycompany.mavenproject2.DataLayer.Seat;
 import com.mycompany.mavenproject2.DataLayer.Show;
 import com.mycompany.mavenproject2.Services.SeatsService;
+import com.mycompany.mavenproject2.Services.ShowDetailsService;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.view.ViewScoped;
@@ -26,16 +27,19 @@ public class ShowDetailsBean implements Serializable {
     int [][] seats;
     
     public Show getSelectedShow() {
+        if(selectedShow== null){
+             this.selectedShow = ShowDetailsService.getShow();
+        this.seats = new int [selectedShow.getRows()][selectedShow.getColumns()];
+
+        }
         return selectedShow;
     }
 
-    public void setSelectedShow(Show selectedShow) {
-        this.selectedShow = selectedShow;
-        this.seats = new int [selectedShow.getRows()][selectedShow.getColumns()];
-        List<Seat> savedSeats =  seatsService.getAllSeatsForShow(this.selectedShow.getId());
-    }
 
     public int[][] getSeats() {
+        if(seats == null){
+            List<Seat> savedSeats =  seatsService.getAllSeatsForShow(this.selectedShow.getId());
+        }
         return seats;
     }
 
@@ -45,8 +49,10 @@ public class ShowDetailsBean implements Serializable {
     
     
     
+    
    public ShowDetailsBean(){
        this.seatsService = new SeatsService(); 
+
    }
    
    public int getId(){
