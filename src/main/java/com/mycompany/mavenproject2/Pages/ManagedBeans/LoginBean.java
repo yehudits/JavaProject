@@ -2,7 +2,7 @@ package com.mycompany.mavenproject2.Pages.ManagedBeans;
 
 
 
-import Enums.LoginType;
+import com.mycompany.mavenproject2.Enums.LoginType;
 
 import com.mycompany.mavenproject2.DataLayer.User;
 import com.mycompany.mavenproject2.Enums.UserType;
@@ -41,7 +41,9 @@ public class LoginBean implements Serializable{
     private String name;
     private UserType userType;
     private String password;
+    private String confirmPassword;
     private String email= " hhhhh    ";
+    private String errorPage="unknown error accured";
     private LoginType loginType = LoginType.SIGNIN;
 
     public String onSubmit(){
@@ -49,7 +51,13 @@ public class LoginBean implements Serializable{
             loginProcess.signIn(new User(id, name, password, email));
         }
         else if (loginType == LoginType.SIGNUP){
-            loginProcess.signUp(new User(id, name, password, email));
+            if(this.password.equals(this.confirmPassword)){
+                loginProcess.signUp(new User(id, name, password, email));
+            }
+            else{
+                this.errorPage="confirm password is not equal to password";
+                return "errorPage.xhtml";
+            }
         }
         return "showsList.xhtml";
     }
@@ -59,9 +67,23 @@ public class LoginBean implements Serializable{
         return this.email;
     }
     
+    public String getErrorPage(){
+        return this.errorPage;
+    }
+
+    
     public void setEmail(String email){
         this.email = email;
     }
+    
+    public String getConfirmPassword(){
+        return this.confirmPassword;
+    }
+    
+    public void setConfirmPassword(String confirmPassword){
+        this.confirmPassword = confirmPassword;
+    }
+
 
     public LoginProcess getLoginProcess() {
         return loginProcess;
@@ -121,23 +143,20 @@ public class LoginBean implements Serializable{
     
         private boolean enabled;
 
-    public void toggle() {
-        enabled = !enabled;
-    }
-
     public boolean isEnabled() {
         return enabled;
     }
     
     public void changeLoginType(){
-        loginType = LoginType.SIGNUP;
         System.out.println("hello hellllllllllllllllllllll");
-        if(loginType == LoginType.SIGNIN){
-            loginType = LoginType.SIGNUP;
+        if(loginType==LoginType.SIGNIN){
+            loginType=LoginType.SIGNUP;
         }
-        else if(loginType == LoginType.SIGNUP){
-            loginType = LoginType.SIGNIN;
+        else{
+            loginType=LoginType.SIGNIN;
         }
+        enabled = !enabled;
+
     }
 
 

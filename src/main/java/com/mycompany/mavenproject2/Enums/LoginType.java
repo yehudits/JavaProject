@@ -1,4 +1,4 @@
-package Enums;
+package com.mycompany.mavenproject2.Enums;
 
 public enum LoginType {
 
