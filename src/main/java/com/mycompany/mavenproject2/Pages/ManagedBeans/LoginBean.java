@@ -50,13 +50,15 @@ public class LoginBean implements Serializable{
         if (loginType ==LoginType.SIGNIN){
             loginProcess.signIn(new User(id, name, password, email));
         }
-        else if (loginType == LoginType.SIGNUP){
-            if(this.password.equals(this.confirmPassword)){
-                loginProcess.signUp(new User(id, name, password, email));
-            }
-            else{
-                this.errorPage="confirm password is not equal to password";
-                return "errorPage.xhtml";
+        else {
+            if (loginType == LoginType.SIGNUP){
+                if(this.password.equals(this.confirmPassword)){
+                    loginProcess.signUp(new User(id, name, password, email));
+                }
+                else{
+                    this.errorPage="confirm password is not equal to password";
+                    return "errorPage.xhtml";
+                }
             }
         }
         return "showsList.xhtml";
