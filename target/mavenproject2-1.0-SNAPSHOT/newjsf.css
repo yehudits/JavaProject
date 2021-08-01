@@ -1,0 +1,66 @@
+
+.loginWrapper{
+    background: white;
+    display: flex;
+    flex-direction: column;
+    height: 60%;
+    margin-top: 10%;
+    border-radius: 17px;
+    width: 30%;
+    align-self: center;
+}
+#user-form{
+    height:100%;
+    width:100%;
+}
+
+.loginTopNavigation{
+    height: 20%;
+    display: flex;
+}
+
+.loginTopNavigationButton{
+    border-radius: 17px;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    text-decoration: none;
+    line-height: 95px;
+}
+
+.loginTopNavigationButton:hover,
+.loginTopNavigationButton:active,
+.loginTopNavigationButton:focus{
+    text-decoration: none;
+}
+.loginTopNavigationButton:hover{
+        font-weight: bold;
+}
+
+body{
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    background-image: linear-gradient(to right, #f3a3f0 , #76b9e0);
+    height:100vh;
+}
+
+.loginContent{
+    display: flex;
+    flex-direction: column;
+    padding: 10% 19%;
+}
+
+.submit-button{
+    height: 40px;
+    background-image: linear-gradient(to right, #f3a3f0 , #76b9e0);
+    border: none;
+    border-radius: 10px;
+    margin-top: 18%;
+}
+
+.inputText{
+    height: 25px;
+    font-size: 17px;
+}
