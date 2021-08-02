@@ -1,4 +1,4 @@
-package com.mycompany.mavenproject2.LoginProcess;
+    package com.mycompany.mavenproject2.LoginProcess;
 
 
 import com.mycompany.mavenproject2.DB.DBConnector;

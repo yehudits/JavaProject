@@ -18,20 +18,20 @@
             
             <h2>select seat</h2>
             
-
+          
             <ui:repeat var="row" value="#{showDetailsBean.rows}" varStatus="d">
     
-
+                
                 <ui:repeat var="column" value="#{showDetailsBean.cols}" varStatus="status">
                     <button>#{row} #{column}</button>
                 </ui:repeat>
                 <br></br>
             </ui:repeat>
-
-<!--
+            
+<!--            
             <ui:repeat var="drow" value="#{showDetailsBean.getRowSeats()}" varStatus="sfdfs">
                 <button>dfds</button>
-            </ui:repeat>
+            </ui:repeat> 
             -->
             
             
