@@ -12,6 +12,7 @@ import com.mycompany.mavenproject2.Services.ShowDetailsService;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -25,6 +26,7 @@ public class ShowDetailsBean implements Serializable {
     private SeatsService seatsService;
     private Show selectedShow;
 
+    Map<Integer, List<Integer>> savedSeats;
     int [][] seats;
     
     private List<List<Float>> _Matrix;
@@ -95,10 +97,8 @@ public List<List<Float>> get_Matrix() {
     }
 
 
-    public int[][] getSeats() {
-        if(seats == null){
-            List<Seat> savedSeats =  seatsService.getAllSeatsForShow(this.selectedShow.getId());
-        }
+    public int[][] fetchSavedSeats() {
+        this.savedSeats =  seatsService.getAllSeatsForShow2(this.selectedShow.getId());
         return seats;
     }
 
@@ -118,6 +118,18 @@ public List<List<Float>> get_Matrix() {
        return this.selectedShow.getId();
    }
    
+   
+   public String isSeatAssigned(int row, int column){
+       if(this.savedSeats == null){
+           this.fetchSavedSeats();
+       }
+       if(this.savedSeats.get(row)!= null){
+           if(this.savedSeats.get(row).contains(column)){
+               return "red";
+       }
+       }
+       return "white";
+   }
    
     
 }

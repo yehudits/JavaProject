@@ -1,4 +1,4 @@
-    package com.mycompany.mavenproject2.LoginProcess;
+        package com.mycompany.mavenproject2.LoginProcess;
 
 
 import com.mycompany.mavenproject2.DB.DBConnector;
@@ -18,50 +18,62 @@ public class LoginProcess {
     }
 
 
-    public void signIn(User user){
+    public boolean signIn(User user){
         //validate user name and password
-//        Statement statement = null;
-//        try {
-//            if(dbConnector == null){
-//                dbConnector = new DBConnector();
-//            }
-//            statement = dbConnector.getStatement();
-////            int i = statement.executeUpdate("insert into USERS (id, name, email, password, userType) values( 2, 'r', 'r', 'r', true)");// todo write query
-//
-//            ResultSet rs = statement.executeQuery("select id from users");// todo write query
-//
-//            while(rs.next()){
-//                int id = rs.getInt("id");
-//            }
-//            
-//        }
-//        catch (Exception e){
-//            System.out.println(e);
-//        }
-//        finally{
-//            if(statement!= null){
-//                try{
-//                    statement.close(); 
-//                }
-//               catch(SQLException E){
-//                   
-//               }
-//            }
-//        }
+        boolean isUserAllowed = false;
+        Statement statement = null;
+        try {
+            if(dbConnector == null){
+                dbConnector = new DBConnector();
+            }
+            statement = dbConnector.getStatement();
+            ResultSet rs = statement.executeQuery("select * from USER where name = '"+user.getName()+"' and password = '"+user.getPassword()+"'");// todo write query
 
+//            ResultSet rs = statement.executeQuery("select id from user");// todo write query
+
+            while(rs.next()){
+                isUserAllowed = true;
+            }
+            
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+        finally{
+            if(statement!= null){
+                try{
+                    statement.close(); 
+                }
+               catch(SQLException E){
+                   
+               }
+            }
+        }
+        return isUserAllowed;
     }
 
 
-    public void signUp(User user){
+    public boolean signUp(User user){
         //validate email address
+        boolean isSignUpSuccedded = false;
         try {
+               if(dbConnector == null){
+                dbConnector = new DBConnector();
+            }
             Statement statement = dbConnector.getStatement();
-            statement.executeQuery("insert into");// todo write query
+            String queryString = "insert into  app.\"USER\"  (NAME, EMAIL, PASSWORD, USERTYPE) VALUES ('" 
+                    + user.getName()+"','"
+                    + user.getEmail()+"','"
+                    + user.getPassword()+"', false)";
+
+            statement.executeUpdate(queryString);// todo write query
+            isSignUpSuccedded = true;
         }
         catch (Exception e){
             System.out.println(e);
         }
 
+        return isSignUpSuccedded;
     }
 
 

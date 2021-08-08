@@ -13,7 +13,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -50,5 +52,31 @@ public class SeatsService {
         }
          return seats;
     }
+    
+    
+      
+    public Map<Integer, List<Integer>> getAllSeatsForShow2(int showId){
+        Map<Integer, List<Integer>> savedSeats = new HashMap<>();
+         try{
+            Connection c = dbConnector.getConnection();
+            PreparedStatement s = c.prepareStatement("select * from seats where show_id = ?");
+            s.setInt(1, showId);
+            ResultSet rs = s.executeQuery();
+            while (rs.next()){
+                int row = rs.getInt("row_num");
+                int col =  rs.getInt("column_num");
+                if(!savedSeats.containsKey(row)){
+                    savedSeats.put(row, new ArrayList<Integer>());
+                }
+                savedSeats.get(row).add(col);
+            }
+        }
+        catch(SQLException E){
+            
+        }
+         return savedSeats;
+    }  
+    
+    
     
 }

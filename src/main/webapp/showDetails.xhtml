@@ -23,7 +23,7 @@
     
                 
                 <ui:repeat var="column" value="#{showDetailsBean.cols}" varStatus="status">
-                    <button>#{row} #{column}</button>
+                    <button style="background-color:  #{showDetailsBean.isSeatAssigned(row, column)}}">#{row} #{column}</button>
                 </ui:repeat>
                 <br></br>
             </ui:repeat>
