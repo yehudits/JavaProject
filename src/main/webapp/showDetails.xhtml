@@ -18,17 +18,21 @@
             
             <h2>select seat</h2>
             
-             
-
-            <ui:repeat var="show" value="#{showDetailsBean.seats}" varStatus="status">
+          
+            <ui:repeat var="row" value="#{showDetailsBean.rows}" varStatus="d">
     
-                <div>
-      
-                    <p>hello</p>
-
-                </div>
-        
-   </ui:repeat>
+                
+                <ui:repeat var="column" value="#{showDetailsBean.cols}" varStatus="status">
+                    <button>#{row} #{column}</button>
+                </ui:repeat>
+                <br></br>
+            </ui:repeat>
+            
+<!--            
+            <ui:repeat var="drow" value="#{showDetailsBean.getRowSeats()}" varStatus="sfdfs">
+                <button>dfds</button>
+            </ui:repeat> 
+            -->
             
             
     </h:body>

@@ -33,6 +33,12 @@
                 <h:inputText class="inputText" a:placeholder="confirm password" id="confirmPassword" value="#{loginBean.confirmPassword}" required="false" requiredMessage="Password is required" rendered="#{loginBean.isNewUser()}"/><br/>  
 
                 <h:commandButton class="submit-button" id="submit-button" value="Submit" action="#{loginBean.onSubmit()}"/>  
+                
+                <div class="wrap_div" rendered="#{loginBean.isManager()}">
+                    <h:commandButton value="management area" action="#{chooseArea.choosePage("management")}"></h:commandButton>
+                    <h:commandButton value="users area" action="#{chooseArea.choosePage("users")}"></h:commandButton>
+                </div>
+
             </div>
             </h:form>  
         

@@ -5,7 +5,7 @@ package com.mycompany.mavenproject2.Enums;
 
 public enum UserType {
     ORGANIZER(0, "organizer"),
-    VISITOR(1, "visitor");
+    VISITOR(1, "visitor");  
 
     UserType(int num, String value){
         this.key = num;
@@ -13,6 +13,4 @@ public enum UserType {
     }
     private int key;
     private String value;
-
-
 }
