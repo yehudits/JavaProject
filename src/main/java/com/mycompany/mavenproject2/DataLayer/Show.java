@@ -12,7 +12,7 @@ public class Show {
         this.name = name;
     }
 
-    public Show(int id, String name, String adress, Date date, int ownerId, String description, int rows, int columns, int price) {
+    public Show(int id, String name, String adress, String date, int ownerId, String description, int rows, int columns, int price) {
         this.id = id;
         this.name = name;
         this.adress = adress;
@@ -29,7 +29,7 @@ public class Show {
     private int id;
     private String name;
     private String adress;
-    private Date date;
+    private String date;
     private int ownerId;
     private String description;
     private int rows;
@@ -60,11 +60,11 @@ public class Show {
         this.adress = adress;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

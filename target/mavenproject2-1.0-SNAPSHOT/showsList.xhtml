@@ -5,23 +5,23 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>shows list</title>
+        <link rel="stylesheet" type="text/css" href="showsList.css"/>
     </h:head>
     <h:body>
         <h:form id="user-form">  
+            <div class="all_shows_wrapper">
+                <ui:repeat var="show" value="#{showsListBean.shows}" varStatus="status">
+                    <div class="show_wrapper">
+                        <h3>#{show.name}</h3>
+                        <p>#{show.description}</p>
 
-            <ui:repeat var="show" value="#{showsListBean.shows}" varStatus="status">
-                <div>
-      
-        <h3>#{show.name}</h3>
-        <p>#{show.description}</p>
-          
-        <h:commandButton id="submit-button" value="Submit" action="#{showsListBean.onSubmit()}"/>  
-<h:commandButton value ="#{show.description} --> details" action="#{showsListBean.navigateToDetails(show.id)}"/>
-    </div>
-        
-   </ui:repeat>
+                        <!--<h:commandButton id="submit-button" value="Submit" action="#{showsListBean.onSubmit()}"/>  -->
+                        <h:commandButton value ="#{show.description} --> details" action="#{showsListBean.navigateToDetails(show.id)}"/>
+                    </div>
 
-            </h:form>  
+                </ui:repeat>
+            </div>
+        </h:form>  
     </h:body>
 </html>
 

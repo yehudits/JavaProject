@@ -34,7 +34,7 @@ public class ShowsListService {
                 shows.add(new Show(rs.getInt("id"),
                         rs.getString("show_name"),
                          rs.getString("address"),
-                         rs.getDate("date"),
+                         rs.getString("date"),
                          rs.getInt("owner"),
                          rs.getString("description"),
                          rs.getInt("rows_num"),
