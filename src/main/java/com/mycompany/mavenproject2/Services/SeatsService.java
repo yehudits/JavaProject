@@ -24,7 +24,9 @@ import java.util.Map;
 public class SeatsService {
     
     private DBConnector dbConnector;
-    
+    private static int chosenRow;
+    private static int chosenColumn;
+
     public SeatsService(){
         dbConnector = new DBConnector();
        
@@ -35,7 +37,7 @@ public class SeatsService {
         List<Seat> seats = new ArrayList();
          try{
             Connection c = dbConnector.getConnection();
-            PreparedStatement s = c.prepareStatement("select * from seats where show_id = ?");
+            PreparedStatement s = c.prepareStatement("select * from app.\"SEAT\" where SHOW_ID = ?");
             s.setInt(1, showId);
             ResultSet rs = s.executeQuery();
             while (rs.next()){
@@ -59,7 +61,7 @@ public class SeatsService {
         Map<Integer, List<Integer>> savedSeats = new HashMap<>();
          try{
             Connection c = dbConnector.getConnection();
-            PreparedStatement s = c.prepareStatement("select * from seats where show_id = ?");
+            PreparedStatement s = c.prepareStatement("select * from app.\"SEAT\"  where \"SHOW_ID\" = ?");
             s.setInt(1, showId);
             ResultSet rs = s.executeQuery();
             while (rs.next()){
@@ -76,6 +78,50 @@ public class SeatsService {
         }
          return savedSeats;
     }  
+    
+    public boolean saveChosenSeat(int showId,int userId){
+        
+        try{
+            Connection conn = this.dbConnector.getConnection();
+            String query = " insert into  app.\"SEAT\"   (SHOW_ID, USER_ID, ROW_NUM,COLUMNS)"
+            + " values ( ?, ?, ?, ?)";
+            PreparedStatement preparedStmt = conn.prepareStatement(query);
+            preparedStmt.setInt (1,showId);
+            preparedStmt.setInt(2,userId);
+            preparedStmt.setInt(3,chosenRow);
+            preparedStmt.setInt(4,chosenColumn);
+            preparedStmt.execute();
+            
+            conn.close();
+            return true;
+        }
+        catch(SQLException e){
+            System.out.println(e);
+        }
+        return false;
+
+    }
+    
+    public static void setSeat(int row, int column){
+        chosenRow=row;
+        chosenColumn = column;
+    }
+
+    public static int getChosenRow() {
+        return chosenRow;
+    }
+
+    public static int getChosenColumn() {
+        return chosenColumn;
+    }
+
+    public static void setChosenRow(int chosenRow) {
+        SeatsService.chosenRow = chosenRow;
+    }
+
+    public static void setChosenColumn(int chosenColumn) {
+        SeatsService.chosenColumn = chosenColumn;
+    }
     
     
     

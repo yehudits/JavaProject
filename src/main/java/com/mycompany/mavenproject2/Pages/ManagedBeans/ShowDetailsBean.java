@@ -131,5 +131,10 @@ public List<List<Float>> get_Matrix() {
        return "white";
    }
    
+   public String chosenSeat(int row, int column ){
+       SeatsService.setSeat(row,column);
+       return "saveCardsInvitation.xhtml";       
+    }
+   
     
 }

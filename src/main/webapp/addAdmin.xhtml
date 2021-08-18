@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f = "http://java.sun.com/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <div class="addAdminWrapper">
+            <h:form>
+                <div class="section addAdmin">
+                    <span class="addAdminTitle">add new administrator</span>
+                    <span class="addAdminTitle">warning! this action will let the new administrator all premmitions</span>
+                    <div class="newAdminDetails">
+                        <h:inputText a:placeholder="user name"/>
+                        <h:inputText a:placeholder="email" value=""/>
+                    </div>
+                </div>
+                <h:commandButton value="add admin" action="#{saveCardsBean.submitInvitation()}"/>
+            </h:form>
+            <span class="result_msg">#{AddAdminBean.resultMsg}</span>
+        </div>
+    </h:body>
+</html>
+

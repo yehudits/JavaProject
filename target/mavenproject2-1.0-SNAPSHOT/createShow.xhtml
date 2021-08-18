@@ -26,7 +26,11 @@
                 <h:commandButton class="submit-button" id="submit-button" value="Submit" action="#{CreateShowBean.onSubmit()}"/>  
             </div>
             </h:form>
-            <h:column>#{CreateShowBean.getCreateShowSucceeded()}</h:column>
+            <h:form>
+                <h:column>#{CreateShowBean.getCreateShowSucceeded()}</h:column>
+                <h:commandButton class="submit-button" id="submit-button" value="to Management Area" action="#{CreateShowBean.goToManagementArea()}"/>  
+            </h:form>
+
         </div>     
 
     </h:body>

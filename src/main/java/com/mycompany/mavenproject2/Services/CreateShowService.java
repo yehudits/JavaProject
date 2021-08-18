@@ -20,26 +20,42 @@ public class CreateShowService {
     
     public boolean addShowService(Show s){
         
-        String str = s.getDate();
-        Date date;//converting string into sql date  
-        date = Date.valueOf(str);
+        //boolean isCreateShowSuccedded = false;
 
+        try {
+         /*      if(dbConnector == null){
+                dbConnector = new DBConnector();
+            }/*try
+            Statement statement = dbConnector.getStatement();
+            String queryString = "insert into  app.\"SHOW\"  (ID,OWNER, DESCRIPTION, ADDRESS, ROWS_NUM, COLUMNS, PRICE, SHOW_NAME, DATE) VALUES (3,'" 
+                    + s.getOwnerId()+",'"
+                    + s.getDescription()+"','"
+                    + s.getAdress()+"',"
+                    + s.getRows()+","
+                    + s.getColumns()+","
+                    + s.getPrice()+",'"
+                    + s.getName()+"',"
+                    + Date.valueOf(s.getDate())+")";
 
-        try{
-       
-            //Statement st = this.dbConnector.getStatement();
+            statement.executeUpdate(queryString);// todo write query
+            isCreateShowSuccedded = true;
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }*/
+         
             Connection conn = this.dbConnector.getConnection();
-            String query = " insert into show (owner, description, address, rows_num, columns,price,date,show_name)"
-            + " values (?, ?, ?, ?, ?, ?, ?, ?)";
+            String query = " insert into  app.\"SHOW\"   (OWNER, DESCRIPTION, ADDRESS, ROWS_NUM, COLUMNS ,PRICE ,DATE ,SHOW_NAME)"
+            + " values ( ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStmt = conn.prepareStatement(query);
             preparedStmt.setInt (1, s.getOwnerId());
             preparedStmt.setString(2,s.getDescription());
-            preparedStmt.setString(2,s.getAdress());
-            preparedStmt.setInt (1, s.getRows());
-            preparedStmt.setInt (1, s.getColumns());
-            preparedStmt.setInt (1, s.getPrice());
-            preparedStmt.setDate (1, date);
-            preparedStmt.setString (1, s.getName());
+            preparedStmt.setString(3,s.getAdress());
+            preparedStmt.setInt (4, s.getRows());
+            preparedStmt.setInt (5, s.getColumns());
+            preparedStmt.setInt (6, s.getPrice());
+            preparedStmt.setDate (7, Date.valueOf(s.getDate()));
+            preparedStmt.setString (8, s.getName());
             preparedStmt.execute();
             
             conn.close();
@@ -47,7 +63,7 @@ public class CreateShowService {
             return true;
         }
         catch(SQLException e){
-            System.out.println("e");
+            System.out.println(e);
         }    
         return false;
     }

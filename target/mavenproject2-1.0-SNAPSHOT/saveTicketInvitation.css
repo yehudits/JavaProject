@@ -1,0 +1,28 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 16 באוג׳ 2021, 14:12:20
+    Author     : HP
+*/
+
+.saveTicketsWrapper {
+    display: flex;
+    flex-direction: column;
+    padding-left: 40%;
+    padding-right: 40%;
+    margin-top: 10%;
+    font-size: 20px;
+}
+
+.section,.detailContent {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.section{
+        margin-top: 40px;
+}

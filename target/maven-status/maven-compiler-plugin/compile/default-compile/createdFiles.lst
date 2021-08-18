@@ -6,6 +6,7 @@ connect\net\sqlitetutorial\Connect.class
 com\mycompany\mavenproject2\Pages\ManagedBeans\ShowDetailsBean.class
 com\mycompany\mavenproject2\Pages\ManagedBeans\ShowsListBean.class
 com\mycompany\mavenproject2\DB\DBConnector.class
+com\mycompany\mavenproject2\Services\UserService.class
 com\mycompany\mavenproject2\Pages\ManagedBeans\LoginBean.class
 com\mycompany\mavenproject2\Enums\LoginType.class
 com\mycompany\mavenproject2\NewSessionBean.class
@@ -14,6 +15,8 @@ com\mycompany\mavenproject2\Pages\ManagedBeans\ShowsManagementBean.class
 com\mycompany\mavenproject2\DataLayer\Show.class
 com\mycompany\mavenproject2\Services\ShowDetailsService.class
 com\mycompany\mavenproject2\DataLayer\Seat.class
+com\mycompany\mavenproject2\Pages\ManagedBeans\AddAdminBean.class
 com\mycompany\mavenproject2\Services\CreateShowService.class
 com\mycompany\mavenproject2\Enums\UserType.class
+com\mycompany\mavenproject2\Pages\ManagedBeans\SaveCardsBean.class
 com\mycompany\mavenproject2\Services\ShowsListService.class

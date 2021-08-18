@@ -37,23 +37,38 @@ public class LoginBean implements Serializable{
 
 
     //properties connected to the ui
-    private int id;
     private String name;
     private UserType userType;
     private String password;
     private String confirmPassword;
     private String email= " hhhhh    ";
-    private String errorPage="unknown error accured";
+    private String errorPage="";
+
+    public String getErrorPage() {
+        return errorPage;
+    }
+
+    public void setErrorPage(String errorPage) {
+        this.errorPage = errorPage;
+    }
     private LoginType loginType = LoginType.SIGNIN;
 
     public String onSubmit(){
         if (loginType ==LoginType.SIGNIN){
-            loginProcess.signIn(new User(id, name, password, email));
+            boolean isSignInSuccsedded = loginProcess.signIn(new User(name, password, email));
+            if(isSignInSuccsedded==false){
+                this.errorPage="sign in failed";
+                return "errorPage.xhtml";
+            }
         }
         else {
             if (loginType == LoginType.SIGNUP){
-                if(this.password.equals(this.confirmPassword)){
-                    loginProcess.signUp(new User(id, name, password, email));
+                if(this.password.equals(this.confirmPassword) && loginProcess.userNameExist(this.name)){
+                    boolean isSignUpSuccsedded = loginProcess.signUp(new User( name, password, email));
+                    if(isSignUpSuccsedded==false){
+                        this.errorPage="sign up failed";
+                        return "errorPage.xhtml";
+                    }
                 }
                 else{
                     this.errorPage="confirm password is not equal to password";
@@ -69,9 +84,6 @@ public class LoginBean implements Serializable{
         return this.email;
     }
     
-    public String getErrorPage(){
-        return this.errorPage;
-    }
 
     
     public void setEmail(String email){
@@ -95,13 +107,6 @@ public class LoginBean implements Serializable{
         this.loginProcess = loginProcess;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

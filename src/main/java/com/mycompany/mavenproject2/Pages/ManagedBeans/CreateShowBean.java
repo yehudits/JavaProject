@@ -6,24 +6,18 @@
 package com.mycompany.mavenproject2.Pages.ManagedBeans;
 
 import com.mycompany.mavenproject2.DataLayer.Show;
-import com.mycompany.mavenproject2.Services.ShowDetailsService;
 
-import java.time.LocalDateTime; // Import the LocalDateTime class
-import java.time.format.DateTimeFormatter; // Import the DateTimeFormatter class
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
-import java.util.*;
-import java.text.SimpleDateFormat;  
-import java.text.ParseException;  
 import com.mycompany.mavenproject2.Services.CreateShowService;
-import java.time.Instant;
+import javax.faces.view.ViewScoped;
+import java.io.Serializable;
 /**
  *
  * @author HP
  */
 @Named(value = "CreateShowBean")
-@Dependent
-public class CreateShowBean {
+@ViewScoped
+public class CreateShowBean implements Serializable{
 
     private String showName;
     private String description;
@@ -48,6 +42,10 @@ public class CreateShowBean {
     
     public String getCreateShowSucceeded(){
         return isShowAdded;
+    }
+    
+    public void goToManagementArea(){
+        
     }
 
     public void onSubmit(){
@@ -127,6 +125,7 @@ public class CreateShowBean {
     public void setDate(String date) {
         this.date = date;
     }
+
 
     public String getIsShowAdded() {
         return isShowAdded;

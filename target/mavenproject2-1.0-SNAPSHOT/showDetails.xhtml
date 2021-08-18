@@ -4,37 +4,40 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>Facelet Title</title>
+        <title>show details</title>
+        <link rel="stylesheet" type="text/css" href="showDetails.css"/>
     </h:head>
     <h:body>
-        Show Details
-        <h1>name: #{showDetailsBean.selectedShow.name}</h1>
-         <h1>description: #{showDetailsBean.selectedShow.description}</h1>
-          <h1>owner: #{showDetailsBean.selectedShow.ownerId}</h1>
-           <h1>price: #{showDetailsBean.selectedShow.price}</h1>
+        <div class="page_wrapper">
+            <span class="page_title">Show Details</span>
+            <h1>#{showDetailsBean.selectedShow.name}</h1>
+            <h1>#{showDetailsBean.selectedShow.description}</h1>
+              <!--<h1>owner: #{showDetailsBean.selectedShow.ownerId}</h1>-->
+            <h1>price: #{showDetailsBean.selectedShow.price}</h1>
             <h1>date: #{showDetailsBean.selectedShow.date}</h1>
-            <h1>date: #{showDetailsBean.id}</h1>
 
-            
+            <h:form class="show_details_form">
             <h2>select seat</h2>
-            
-          
-            <ui:repeat var="row" value="#{showDetailsBean.rows}" varStatus="d">
-    
-                
-                <ui:repeat var="column" value="#{showDetailsBean.cols}" varStatus="status">
-                    <button style="background-color:  #{showDetailsBean.isSeatAssigned(row, column)}}">#{row} #{column}</button>
+
+            <div class="seats_wrapper">
+                <ui:repeat var="row" value="#{showDetailsBean.rows}" varStatus="d">
+
+                    <span class="rows_numbering">#{row}</span>
+                    <ui:repeat var="column" value="#{showDetailsBean.cols}" varStatus="status">
+                        <h:commandButton class="show_seats" value="#{column}" style="background-color:#{showDetailsBean.isSeatAssigned(row, column)}" action="#{showDetailsBean.chosenSeat(row, column)}" />                        
+
+                    </ui:repeat>
+                    <br></br>
                 </ui:repeat>
-                <br></br>
-            </ui:repeat>
-            
-<!--            
-            <ui:repeat var="drow" value="#{showDetailsBean.getRowSeats()}" varStatus="sfdfs">
-                <button>dfds</button>
-            </ui:repeat> 
-            -->
-            
-            
+            </div>
+            </h:form>
+    <!--            
+                <ui:repeat var="drow" value="#{showDetailsBean.getRowSeats()}" varStatus="sfdfs">
+                    <button>dfds</button>
+                </ui:repeat> 
+                -->
+
+        </div>
     </h:body>
 </html>
 
