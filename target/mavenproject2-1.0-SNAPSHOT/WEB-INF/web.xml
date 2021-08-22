@@ -7,7 +7,6 @@
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
@@ -19,6 +18,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>faces/createShow.xhtml</welcome-file>
+        <welcome-file>faces/newjsf.xhtml</welcome-file>
     </welcome-file-list>
 </web-app>

@@ -13,8 +13,45 @@ and open the template in the editor.
     justify-content: space-between;
     margin-top: 5%;
     margin-left: 10%;
+    flex-wrap: wrap;
 }
 .show_wrapper{
     width: 26%;
     height: 400px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 100px;
+}
+
+.page_wrapper{
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+.page_title{
+    text-align: center;
+    font-size: 40px;
+}
+
+.show_details_btn{
+    border: none;
+    height: 50px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.show_details_btn:hover{
+   background-color: #dedede
+}
+
+.show_details_name{
+    text-align: center;
+    font-size: 30px;
+}
+
+.show_details_date,.show_details_description{
+    text-align: center;
 }

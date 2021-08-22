@@ -1,31 +1,33 @@
 package com.mycompany.mavenproject2.DataLayer;
 
-import com.mycompany.mavenproject2.Enums.UserType;
 
 
 public class User {
 
-    public User(int id, String name, String password, String email) {
-        this.id = id;
+    public User(String name, String password, String email) {
         this.name = name;
         this.password = password;
         this.email = email;
     }
+    
+    public User(int id, String name, String password, String email,boolean userType ) {
+        this.name = name;
+        this.password = password;
+        this.email = email;
+        this.id=id;
+        this.userType = userType;
+    }
+
 
     
-    private int id;
     private String name;
-    private UserType userType;
+    private boolean userType;
     private String password;
     private String email;
+    private int id;
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+
 
     public String getName() {
         return name;
@@ -35,11 +37,19 @@ public class User {
         this.name = name;
     }
 
-    public UserType getUserType() {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public boolean getUserType() {
         return userType;
     }
 
-    public void setUserType(UserType userType) {
+    public void setUserType(boolean userType) {
         this.userType = userType;
     }
 
