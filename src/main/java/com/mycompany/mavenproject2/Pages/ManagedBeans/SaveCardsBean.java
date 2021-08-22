@@ -107,7 +107,7 @@ public class SaveCardsBean implements Serializable{
         if(this.cardNum.length()==16){
             if(this.cvv>=100 && this.cvv<1000){
                 if(this.cardMonth>0&&this.cardMonth<13 && this.cardYear>2020){//replace it to cur date
-                    SeatsService.saveChosenSeat(this.showId,this.userId);
+                    SeatsService.saveChosenSeats(this.showId,this.userId);
                 }
                 else{
                     this.ticketNotSaved += " date is invalid ";

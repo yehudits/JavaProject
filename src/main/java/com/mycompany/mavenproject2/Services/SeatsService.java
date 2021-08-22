@@ -12,7 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +26,9 @@ public class SeatsService {
     private DBConnector dbConnector;
     private static int chosenRow;
     private static int chosenColumn;
+    private static int showId;
+    private static int userId;
+    private static ArrayList<ArrayList<Integer>> chosenSeats = new ArrayList<ArrayList<Integer>> ();
 
     public SeatsService(){
         dbConnector = new DBConnector();
@@ -79,19 +82,37 @@ public class SeatsService {
          return savedSeats;
     }  
     
-    public boolean saveChosenSeat(int showId,int userId){
+    public boolean saveChosenSeats(int sId,int uId){
+        showId=sId;
+        userId=uId;
+        boolean res = saveChosenSeat();
+
+        /*for(int i=0;i<chosenSeats.size();i++){
+            boolean res = saveChosenSeat(chosenSeats.get(i).get(0),chosenSeats.get(i).get(1));
+            if(!res){
+                return false;
+            }
+        }*/
+        return res;
+    }
+
+    
+    public boolean saveChosenSeat(){
         
         try{
             Connection conn = this.dbConnector.getConnection();
             String query = " insert into  app.\"SEAT\"   (SHOW_ID, USER_ID, ROW_NUM,COLUMNS)"
             + " values ( ?, ?, ?, ?)";
             PreparedStatement preparedStmt = conn.prepareStatement(query);
-            preparedStmt.setInt (1,showId);
-            preparedStmt.setInt(2,userId);
-            preparedStmt.setInt(3,chosenRow);
-            preparedStmt.setInt(4,chosenColumn);
-            preparedStmt.execute();
-            
+            for(int i=0;i<chosenSeats.size();i++){
+                preparedStmt.setInt (1,showId);
+                preparedStmt.setInt(2,userId);
+                preparedStmt.setInt(3,chosenSeats.get(i).get(0));
+                preparedStmt.setInt(4,chosenSeats.get(i).get(1));
+                preparedStmt.execute();
+                preparedStmt.addBatch();
+            }
+
             conn.close();
             return true;
         }
@@ -102,9 +123,10 @@ public class SeatsService {
 
     }
     
-    public static void setSeat(int row, int column){
-        chosenRow=row;
-        chosenColumn = column;
+    public static void setSeats(ArrayList<ArrayList<Integer>> chosenSeatsList){
+        chosenRow=chosenSeatsList.get(0).get(0);
+        chosenColumn = chosenSeatsList.get(0).get(1);
+        chosenSeats = chosenSeatsList;
     }
 
     public static int getChosenRow() {
