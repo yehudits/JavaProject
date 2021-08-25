@@ -12,7 +12,7 @@ import com.mycompany.mavenproject2.Services.ShowDetailsService;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+import java.util.*;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -25,8 +25,11 @@ import javax.inject.Named;
 public class ShowDetailsBean implements Serializable {
     private SeatsService seatsService;
     private Show selectedShow;
-
     Map<Integer, List<Integer>> savedSeats;
+    
+    ArrayList<ArrayList<Integer>> chosenSeats = new ArrayList<ArrayList<Integer>>();
+
+    
     int [][] seats;
     
     private List<List<Float>> _Matrix;
@@ -126,15 +129,37 @@ public List<List<Float>> get_Matrix() {
        if(this.savedSeats.get(row)!= null){
            if(this.savedSeats.get(row).contains(column)){
                return "red";
+            }
        }
+       else{
+            ArrayList<Integer> addedSeat = new ArrayList<Integer>();
+            addedSeat.add(row);
+            addedSeat.add(column);
+            if(chosenSeats.contains(addedSeat)){
+                return "#d4cece";
+            }
        }
        return "white";
    }
    
-   public String chosenSeat(int row, int column ){
-       SeatsService.setSeat(row,column);
+   public String chooseSeats(){
+       SeatsService.setSeats(this.chosenSeats);
        return "saveCardsInvitation.xhtml";       
     }
    
-    
+   public void addSeatToSavedSeats(int row, int column){
+       ArrayList<Integer> addedSeat = new ArrayList<Integer>();
+       addedSeat.add(row);
+       addedSeat.add(column);
+       if(chosenSeats.contains(addedSeat)){
+           chosenSeats.remove(addedSeat);
+           System.out.println("remove "+row+","+column);
+        }
+       else{
+            chosenSeats.add(addedSeat);
+            System.out.println("add "+row+","+column);
+       }
+       
+   }
+
 }

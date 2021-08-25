@@ -103,11 +103,12 @@ public class SaveCardsBean implements Serializable{
      * Creates a new instance of SaveCardsBean
      */
     
-    public void submitInvitation(){//needs mach more checking
+    public String submitInvitation(){//needs mach more checking
         if(this.cardNum.length()==16){
             if(this.cvv>=100 && this.cvv<1000){
                 if(this.cardMonth>0&&this.cardMonth<13 && this.cardYear>2020){//replace it to cur date
-                    SeatsService.saveChosenSeat(this.showId,this.userId);
+                    SeatsService.saveChosenSeats(this.showId,this.userId);
+                    return "paymentSucceeded.xhtml";
                 }
                 else{
                     this.ticketNotSaved += " date is invalid ";
@@ -120,6 +121,7 @@ public class SaveCardsBean implements Serializable{
         else{
             this.ticketNotSaved += " card num is invalid ";
         }
+        return "payment faild";
         
     }
 
