@@ -64,12 +64,12 @@ public class SeatsService {
         Map<Integer, List<Integer>> savedSeats = new HashMap<>();
          try{
             Connection c = dbConnector.getConnection();
-            PreparedStatement s = c.prepareStatement("select * from app.\"SEAT\"  where \"SHOW_ID\" = ?");
+            PreparedStatement s = c.prepareStatement("select * from app.SEAT  where SHOW_ID = ?");
             s.setInt(1, showId);
             ResultSet rs = s.executeQuery();
             while (rs.next()){
                 int row = rs.getInt("row_num");
-                int col =  rs.getInt("column_num");
+                int col =  rs.getInt("columns");
                 if(!savedSeats.containsKey(row)){
                     savedSeats.put(row, new ArrayList<Integer>());
                 }
@@ -77,7 +77,7 @@ public class SeatsService {
             }
         }
         catch(SQLException E){
-            
+            System.out.println(E);
         }
          return savedSeats;
     }  
