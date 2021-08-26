@@ -11,7 +11,7 @@ public class Show {
         this.name = name;
     }
 
-    public Show(int id, String name, String adress, String date, int ownerId, String description, int rows, int columns, int price) {
+    public Show(int id, String name, String adress, String date, int ownerId, String description, int rows, int columns, int price, String url,String time) {
         this.id = id;
         this.name = name;
         this.adress = adress;
@@ -21,13 +21,15 @@ public class Show {
         this.rows = rows;
         this.columns = columns;
         this.price = price;
+        this.imgUrl = url;
+        this.time = time;
     }
     
     
     
     private int id;
     private String name;
-    private String adress;
+    private String adress,imgUrl,time;
     private String date;
     private int ownerId;
     private String description;
@@ -105,6 +107,22 @@ public class Show {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
     
     

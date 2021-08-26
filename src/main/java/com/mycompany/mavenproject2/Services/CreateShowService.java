@@ -45,8 +45,10 @@ public class CreateShowService {
         }*/
          
             Connection conn = this.dbConnector.getConnection();
-            String query = " insert into  app.\"SHOW\"   (OWNER, DESCRIPTION, ADDRESS, ROWS_NUM, COLUMNS ,PRICE ,DATE ,SHOW_NAME)"
-            + " values ( ?, ?, ?, ?, ?, ?, ?, ?)";
+            String query = " insert into  app.\"SHOW\"   (OWNER, DESCRIPTION, ADDRESS, ROWS_NUM, COLUMNS ,PRICE ,DATE ,SHOW_NAME, \"HOUR\", IMAGE_URL)"
+                    
+                    
+            + " values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStmt = conn.prepareStatement(query);
             preparedStmt.setInt (1, s.getOwnerId());
             preparedStmt.setString(2,s.getDescription());
@@ -56,6 +58,8 @@ public class CreateShowService {
             preparedStmt.setInt (6, s.getPrice());
             preparedStmt.setDate (7, Date.valueOf(s.getDate()));
             preparedStmt.setString (8, s.getName());
+            preparedStmt.setString(9,s.getTime());
+            preparedStmt.setString(10,s.getImgUrl());
             preparedStmt.execute();
             
             conn.close();

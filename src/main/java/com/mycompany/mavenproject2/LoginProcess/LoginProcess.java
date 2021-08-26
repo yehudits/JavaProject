@@ -56,7 +56,7 @@ public class LoginProcess {
 */
             
         }
-        catch (Exception e){
+        catch (SQLException e){
             System.out.println(e);
         }
         finally{

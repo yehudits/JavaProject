@@ -19,7 +19,7 @@ import java.io.Serializable;
 @ViewScoped
 public class CreateShowBean implements Serializable{
 
-    private String showName;
+    private String showName,time,imgUrl;
     private String description;
     private int owner;
     private String address;
@@ -52,7 +52,8 @@ public class CreateShowBean implements Serializable{
         //validation checks
 
         Show show=new Show(4,this.showName,this.address,this.date,
-                            this.owner,this.description,this.row_num,this.columns,this.price);
+                            this.owner,this.description,this.row_num,this.columns,this.price,
+                            this.imgUrl,this.time);
         this.cs = new CreateShowService();
         boolean ShowAdded;
         ShowAdded = this.cs.addShowService(show);
@@ -143,5 +144,22 @@ public class CreateShowBean implements Serializable{
         this.cs = cs;
     }
 
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    
 
 }

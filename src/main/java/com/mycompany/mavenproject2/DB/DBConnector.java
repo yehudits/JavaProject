@@ -42,7 +42,7 @@ public class DBConnector {
     }
 
     public Statement getStatement() throws SQLException{
-        if(conn==null){
+ //       if(conn==null){
             try{
                 conn =  DriverManager.getConnection(url, "App", "App");
 
@@ -50,7 +50,7 @@ public class DBConnector {
             catch(SQLException E){
                 System.err.println("E");
             }
-        }
+//        }
         Statement s =conn.createStatement();
         return s;
     }

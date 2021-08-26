@@ -39,8 +39,9 @@ public class ShowsListService {
                          rs.getString("description"),
                          rs.getInt("rows_num"),
                         rs.getInt("columns"),
-                        rs.getInt("price")
-                        
+                        rs.getInt("price"),
+                        rs.getString("IMAGE_URL"),
+                        rs.getString("HOUR")
                 ));
             }
     
