@@ -1,0 +1,115 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 26 באוג׳ 2021, 20:25:05
+    Author     : HP
+*/
+
+.top_nav{
+    background: #000000;
+    
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+}
+
+input.top_nav_btns{
+    padding: 0px 10px;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+input.top_nav_btns,
+input.sign_out{
+    height: 100%;
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+input.top_nav_btns:hover
+{
+    background:#f2e962;
+    color: black;
+}
+
+input.sign_out:hover{
+    color:#f2e962;
+}
+
+input.sign_out {
+    font-size: 13px;
+}
+
+
+span.user_name {
+    height: 100%;
+    color: white;
+}
+
+.admin_btns {
+    padding-right: 40px;
+}
+
+.user_name_and_signout {
+    height: 100%;
+    display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+

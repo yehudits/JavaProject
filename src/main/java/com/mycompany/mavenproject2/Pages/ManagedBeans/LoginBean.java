@@ -41,7 +41,7 @@ public class LoginBean implements Serializable{
     private UserType userType;
     private String password;
     private String confirmPassword;
-    private String email= " hhhhh    ";
+    private String email;
     private String errorPage="";
 
     public String getErrorPage() {

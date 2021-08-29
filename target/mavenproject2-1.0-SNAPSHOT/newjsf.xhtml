@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f = "http://java.sun.com/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>BuyCard Project</title>
+        <link rel="stylesheet" type="text/css" href="newjsf.css"/>
+    </h:head>
+    <h:body>
+        <div class="loginWrapper">
+            <h:form id="user-form">  
+             <!--<h:selectOneRadio >
+                <f:selectItem itemLabel = "Sign in" />
+                <f:selectItem itemLabel = "Sign Up" />
+             </h:selectOneRadio>	   		
+             <h:commandButton value = "Submit" action = "result" />-->
+             <div class="loginTopNavigation">
+                    <h:commandLink value="Sign in" action="#{loginBean.changeLoginType}" disabled="#{not loginBean.enabled}" class="loginTopNavigationButton"/>
+                    <h:commandLink value="Sign Up" action="#{loginBean.changeLoginType}"  disabled="#{loginBean.enabled}" class="loginTopNavigationButton"/>
+             </div>
+             <div class="loginContent">
+
+
+                <h:inputText class="inputText" a:placeholder="User Name" id="username" value="#{loginBean.name}" required="false" requiredMessage="Username is required" /><br/>  
+
+
+                <h:inputText class="inputText" a:placeholder="Email" id="email" value="#{loginBean.email}" required="false" requiredMessage="Email is required" rendered="#{loginBean.isNewUser()}" /><br/>  
+
+                <h:inputText class="inputText" a:placeholder="password" id="password" value="#{loginBean.password}" required="false" requiredMessage="Password is required"/><br/>  
+                <h:inputText class="inputText" a:placeholder="confirm password" id="confirmPassword" value="#{loginBean.confirmPassword}" required="false" requiredMessage="Password is required" rendered="#{loginBean.isNewUser()}"/><br/>  
+
+                <h:commandButton class="submit-button" id="submit-button" value="Submit" action="#{loginBean.onSubmit()}"/>  
+                
+
+            </div>
+            </h:form>  
+        
+   </div>     
+        
+    </h:body>
+</html>
+

@@ -16,6 +16,7 @@ import javax.enterprise.context.*;
 import javax.faces.view.ViewScoped;
 import java.io.Serializable;
 import com.mycompany.mavenproject2.LoginProcess.LoginProcess;
+import org.apache.commons.lang3.RandomStringUtils;
 
 
 /**
@@ -29,9 +30,10 @@ public class SaveCardsBean implements Serializable{
 
     private String cardNum,ticketNotSaved="";
     private int cvv,cardMonth,cardYear,row,column,showId,userId;
-    private String showName, date;
+    private String showName, date, time,shortId;
     private SeatsService SeatsService;
     private LoginProcess LoginProcess;
+    private ArrayList<ArrayList<Integer>> chosenSeats;
 
 
     public SaveCardsBean() {
@@ -44,7 +46,9 @@ public class SaveCardsBean implements Serializable{
         this.date = ShowDetailsService.getShow().getDate();
         this.showId = ShowDetailsService.getShow().getId();
         this.userId = LoginProcess.getUser().getId();
-
+        this.chosenSeats = SeatsService.getChosenSeats();
+        this.time = ShowDetailsService.getShow().getTime();
+        this.shortId = RandomStringUtils.randomAlphanumeric(8); 
     }
 
     public int getShowId() {
@@ -107,7 +111,7 @@ public class SaveCardsBean implements Serializable{
         if(this.cardNum.length()==16){
             if(this.cvv>=100 && this.cvv<1000){
                 if(this.cardMonth>0&&this.cardMonth<13 && this.cardYear>2020){//replace it to cur date
-                    SeatsService.saveChosenSeats(this.showId,this.userId);
+                    SeatsService.saveChosenSeats(this.showId,this.userId,this.shortId);
                     return "paymentSucceeded.xhtml";
                 }
                 else{
@@ -160,6 +164,22 @@ public class SaveCardsBean implements Serializable{
 
     public void setCardYear(int cardYear) {
         this.cardYear = cardYear;
+    }
+
+    public ArrayList<ArrayList<Integer>> getChosenSeats() {
+        return chosenSeats;
+    }
+
+    public void setChosenSeats(ArrayList<ArrayList<Integer>> chosenSeats) {
+        this.chosenSeats = chosenSeats;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
     
     
