@@ -21,7 +21,6 @@
                     <h:commandLink value="Sign Up" action="#{loginBean.changeLoginType}"  disabled="#{loginBean.enabled}" class="loginTopNavigationButton"/>
              </div>
              <div class="loginContent">
-                <h:column>#{loginBean.getLoginType()}</h:column>
 
 
                 <h:inputText class="inputText" a:placeholder="User Name" id="username" value="#{loginBean.name}" required="false" requiredMessage="Username is required" /><br/>  

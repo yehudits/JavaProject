@@ -150,21 +150,26 @@ public class LoginProcess {
 
             String q = "select * from app.\"user\"  where \"name\" = '"+name+"' and \"email\" = '"+email+"'";
             ResultSet rs = statement.executeQuery(q);// todo write query
-            if(rs.getRow()!=1){
-                return 2;//no user
+            while(rs.next()){
+                try{
+                    String q2 = "update app.\"user\" set \"userType\"=true where \"name\" ='"+name+"'and \"email\"='"+email+"'";
+                    statement.executeUpdate(q2);// todo write query
+                    return 1;//code for succeess
+                }
+                catch(SQLException e){
+                    System.out.println(e);
+                    return 3;
+                }
             }
-            else{
-                String q2 = "update app.\"user\" set \"userType\"=true where \"name\" ='"+name+"'and \"email\"='"+email+"'";
-                ResultSet rs2 = statement.executeQuery(q2);// todo write query
-
-            }
+            return 2;
+            
 
         }
         catch(Exception e){
             System.out.println(e);
-            return 3;//code for exception
         }
-        return 1;//code for succeess
+        return 3;//code for exception
+
     }
 
 }

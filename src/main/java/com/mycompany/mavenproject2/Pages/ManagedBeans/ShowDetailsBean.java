@@ -25,6 +25,7 @@ import javax.inject.Named;
 public class ShowDetailsBean implements Serializable {
     private SeatsService seatsService;
     private Show selectedShow;
+    private boolean isSubmitDisabled = true;
     Map<Integer, List<Integer>> savedSeats;
     
     ArrayList<ArrayList<Integer>> chosenSeats = new ArrayList<ArrayList<Integer>>();
@@ -128,16 +129,14 @@ public List<List<Float>> get_Matrix() {
        }
        if(this.savedSeats.get(row)!= null){
            if(this.savedSeats.get(row).contains(column)){
-               return "red";
-            }
+               return "#f2e962; cursor: not-allowed;pointer-events: none;";            }
        }
-       else{
-            ArrayList<Integer> addedSeat = new ArrayList<Integer>();
-            addedSeat.add(row);
-            addedSeat.add(column);
-            if(chosenSeats.contains(addedSeat)){
-                return "#d4cece";
-            }
+        ArrayList<Integer> addedSeat = new ArrayList<Integer>();
+        addedSeat.add(row);
+        addedSeat.add(column);
+        if(chosenSeats.contains(addedSeat)){
+            return "#d4cece";
+
        }
        return "white";
    }
@@ -159,7 +158,23 @@ public List<List<Float>> get_Matrix() {
             chosenSeats.add(addedSeat);
             System.out.println("add "+row+","+column);
        }
-       
+       this.isSubmitDisabled=chosenSeats.size() <= 0;
    }
+   
+    public boolean isIsSubmitDisabled() {
+        return isSubmitDisabled;
+    }
+
+    public void setIsSubmitDisabled(boolean isSubmitDisabled) {
+        this.isSubmitDisabled = isSubmitDisabled;
+    }
+
+    public Map<Integer, List<Integer>> getSavedSeats() {
+        return savedSeats;
+    }
+
+    public void setSavedSeats(Map<Integer, List<Integer>> savedSeats) {
+        this.savedSeats = savedSeats;
+    }
 
 }

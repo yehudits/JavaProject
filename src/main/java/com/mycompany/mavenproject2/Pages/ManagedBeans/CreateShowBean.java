@@ -9,6 +9,7 @@ import com.mycompany.mavenproject2.DataLayer.Show;
 
 import javax.inject.Named;
 import com.mycompany.mavenproject2.Services.CreateShowService;
+import com.mycompany.mavenproject2.LoginProcess.LoginProcess;
 import javax.faces.view.ViewScoped;
 import java.io.Serializable;
 /**
@@ -21,14 +22,14 @@ public class CreateShowBean implements Serializable{
 
     private String showName,time,imgUrl;
     private String description;
-    private int owner;
     private String address;
-    private int row_num;
-    private int columns;
-    private int price;//maybe should be double
+    private Integer row_num;
+    private Integer columns;
+    private Integer price;//maybe should be double
     private String date;
     private String isShowAdded;
     private CreateShowService cs;
+    private LoginProcess lp;
 
    
 
@@ -50,9 +51,13 @@ public class CreateShowBean implements Serializable{
 
     public void onSubmit(){
         //validation checks
-
+        if(this.imgUrl==null || this.imgUrl.length()<2){
+            this.imgUrl = "https://lh3.googleusercontent.com/9rih-uoIi2Iu_6HGliComvDndVj-xzxn3zF0iM9wOGyrikYmjGZ5xZQQ7gbx-FUEsXlY=s142";
+        }
+        this.lp = new LoginProcess();
+        int owner = lp.getUser().getId();
         Show show=new Show(4,this.showName,this.address,this.date,
-                            this.owner,this.description,this.row_num,this.columns,this.price,
+                            owner,this.description,this.row_num,this.columns,this.price,
                             this.imgUrl,this.time);
         this.cs = new CreateShowService();
         boolean ShowAdded;
@@ -79,13 +84,6 @@ public class CreateShowBean implements Serializable{
         this.description = description;
     }
 
-    public int getOwner() {
-        return owner;
-    }
-
-    public void setOwner(int owner) {
-        this.owner = owner;
-    }
 
     public String getAddress() {
         return address;
@@ -95,7 +93,7 @@ public class CreateShowBean implements Serializable{
         this.address = address;
     }
 
-    public int getRow_num() {
+    public Integer getRow_num() {
         return row_num;
     }
 
@@ -103,7 +101,7 @@ public class CreateShowBean implements Serializable{
         this.row_num = row_num;
     }
 
-    public int getColumns() {
+    public Integer getColumns() {
         return columns;
     }
 
@@ -111,7 +109,7 @@ public class CreateShowBean implements Serializable{
         this.columns = columns;
     }
 
-    public int getPrice() {
+    public Integer  getPrice() {
         return price;
     }
 

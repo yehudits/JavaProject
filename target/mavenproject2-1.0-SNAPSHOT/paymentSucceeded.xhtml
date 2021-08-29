@@ -3,15 +3,54 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f = "http://java.sun.com/jsf/core"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Facelet Title</title>
+        <link rel="stylesheet" type="text/css" href="topNav.css"/>
     </h:head>
     <h:body>
-        <span>payment succeeded :)</span>
         <h:form>
-            <h:commandButton value="return to shows list" action="showsList.xhtml"/>
+            <div class="top_nav">
+                    <div class="user_name_and_signout">
+                        <h:commandButton class="sign_out" value="sign out" action="newjsf.xhtml"/>
+                        <span class="user_name">#{showsListBean.loginProcess.user.name}</span>
+                    </div>
+                    <div class="admin_btns">
+                        <h:commandButton class="top_nav_btns" value="add new administrator" rendered="#{showsListBean.loginProcess.userType}" action="#{showsListBean.addShowOrManager(0)}"/>
+                        <h:commandButton class="top_nav_btns"  value="add new show" rendered="#{showsListBean.loginProcess.userType}"  action="#{showsListBean.addShowOrManager(1)}"/>
+                        <h:commandButton class="top_nav_btns"  value="return to shows list" action="showsList.xhtml"/>
+                    </div>
+            </div>
         </h:form>
+
+        <span>payment succeeded :)</span>
+        
+        
+                    <div class="section userDetails">
+                <span class="detailTitle">user details:</span>
+                <div class="detailContent">
+                    <span>user name: #{loginBean.loginProcess.user.name}</span>
+                    <span>email #{loginBean.loginProcess.user.id}</span>
+                </div>
+            </div>
+
+            <div class="section showDetails">
+                <span class="detailTitle">show details:</span>
+                <div class="detailContent">
+                    <span>show name: #{saveCardsBean.showName}</span>
+                    <span>show id #{saveCardsBean.showId}</span>
+                    <ui:repeat var="seat" value="#{saveCardsBean.chosenSeats}" varStatus="status">
+                        <span>row #{seat.get(0)}</span>
+                        <span>column #{seat.get(1)}</span>
+                    </ui:repeat>
+                    <span>date #{saveCardsBean.date}</span>
+
+
+                </div>
+            </div>
+
+        
     </h:body>
 </html>
 

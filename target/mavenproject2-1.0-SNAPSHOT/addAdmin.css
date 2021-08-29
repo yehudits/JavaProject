@@ -1,0 +1,51 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 29 באוג׳ 2021, 2:43:04
+    Author     : HP
+*/
+
+.addAdminWrapper {
+    margin-top: 200px;
+}
+
+.addAdminWrapper form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.section.addAdmin {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+span.addAdminTitle {
+    margin-bottom: 25px;
+    font-size: 35px;
+}
+
+.newAdminDetails {
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+    margin-bottom: 100px;
+}
+
+.newAdminDetails input[type="text"] {
+    height: 30px;
+    margin-bottom: 15px;
+}
+
+.submit_button{
+    height: 40px;
+    width: 150px;
+    background: #f2e962;
+    border: 1px solid gray;
+    border-radius: 5px;
+    font-weight: 700;
+}

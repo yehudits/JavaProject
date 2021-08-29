@@ -6,31 +6,45 @@
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <title>create show</title>
+        <link rel="stylesheet" type="text/css" href="topNav.css"/>
+        <link rel="stylesheet" type="text/css" href="createShow.css"/>
     </h:head>
     <h:body>
+        <h:form>
+            <div class="top_nav">
+                    <div class="user_name_and_signout">
+                        <h:commandButton class="sign_out" value="sign out" action="newjsf.xhtml"/>
+                        <span class="user_name">#{showsListBean.loginProcess.user.name}</span>
+                    </div>
+                    <div class="admin_btns">
+                        <h:commandButton class="top_nav_btns" value="add new administrator" rendered="#{showsListBean.loginProcess.userType}" action="#{showsListBean.addShowOrManager(0)}"/>
+                        <h:commandButton class="top_nav_btns"  value="add new show" rendered="#{showsListBean.loginProcess.userType}"  action="#{showsListBean.addShowOrManager(1)}"/>
+                        <h:commandButton class="top_nav_btns"  value="return to shows list" action="showsList.xhtml"/>
+                    </div>
+            </div>
+        </h:form>
+
         <div class="create_showWrapper">
             <h:form id="create_show_form">  
+            <span class="createShowTitle">Create Show</span>
              <div class="create_show_content">
                  <h:inputText class="inputText" a:placeholder="show name" id="show_name" value="#{CreateShowBean.showName}" required="true" requiredMessage="show name is needed" /> 
                 <h:inputText class="inputText" a:placeholder="description" id="description" value="#{CreateShowBean.description}"/>
-                <h:inputText class="inputText" a:placeholder="owner" id="owner" value="#{CreateShowBean.owner}" required="true" requiredMessage="owner is needed" />
                 <h:inputText class="inputText" a:placeholder="address" id="address" value="#{CreateShowBean.address}" required="true" requiredMessage="address is needed" />
                 <h:inputText class="inputText" a:placeholder="rows num" id="row_num" value="#{CreateShowBean.row_num}" required="true" requiredMessage="rows num is needed" />
                 <h:inputText class="inputText" a:placeholder="columns num" id="columns_num" value="#{CreateShowBean.columns}" required="true" requiredMessage="columns num is needed" />
                 <h:inputText class="inputText" a:placeholder="price" id="price" value="#{CreateShowBean.price}" required="true" requiredMessage="price is needed" />
                 <h:inputText class="inputText" a:placeholder="date" id="date" value="#{CreateShowBean.date}" required="true" requiredMessage="date is needed" />
+                <span>please enter the date in this format: yyyy-MM-dd</span>
                 <h:inputText class="inputText" a:placeholder="image url" id="image_url" value="#{CreateShowBean.imgUrl}"/>
                 <h:inputText class="inputText" a:placeholder="time" id="time" value="#{CreateShowBean.time}" required="true" requiredMessage="time is needed" />
+                <span>please enter the time in this format: hh:mm</span>
 
-                <h:column>please enter the date in this format 'yyyy-MM-dd'</h:column>
 
-                <h:commandButton class="submit-button" id="submit-button" value="Submit" action="#{CreateShowBean.onSubmit()}"/>  
+                <h:commandButton class="submit_button" id="submit-button" value="Create Show" action="#{CreateShowBean.onSubmit()}"/>  
             </div>
             </h:form>
-            <h:form>
-                <h:column>#{CreateShowBean.getCreateShowSucceeded()}</h:column>
-                <h:commandButton class="submit-button" id="submit-button" value="to Management Area" action="#{CreateShowBean.goToManagementArea()}"/>  
-            </h:form>
+            <h:column>#{CreateShowBean.getCreateShowSucceeded()}</h:column>
 
         </div>     
 

@@ -16,6 +16,8 @@ import java.util.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.apache.commons.lang3.RandomStringUtils;
+
 
 /**
  *
@@ -28,6 +30,7 @@ public class SeatsService {
     private static int chosenColumn;
     private static int showId;
     private static int userId;
+    private static String shortId;
     private static ArrayList<ArrayList<Integer>> chosenSeats = new ArrayList<ArrayList<Integer>> ();
 
     public SeatsService(){
@@ -82,9 +85,10 @@ public class SeatsService {
          return savedSeats;
     }  
     
-    public boolean saveChosenSeats(int sId,int uId){
+    public boolean saveChosenSeats(int sId,int uId,String shId){
         showId=sId;
         userId=uId;
+        shortId = shId;
         boolean res = saveChosenSeat();
 
         /*for(int i=0;i<chosenSeats.size();i++){
@@ -143,6 +147,10 @@ public class SeatsService {
 
     public static void setChosenColumn(int chosenColumn) {
         SeatsService.chosenColumn = chosenColumn;
+    }
+
+    public static ArrayList<ArrayList<Integer>> getChosenSeats() {
+        return chosenSeats;
     }
     
     
