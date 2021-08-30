@@ -97,7 +97,7 @@ public class CreateShowBean implements Serializable{
         return row_num;
     }
 
-    public void setRow_num(int row_num) {
+    public void setRow_num(Integer row_num) {
         this.row_num = row_num;
     }
 
@@ -105,7 +105,7 @@ public class CreateShowBean implements Serializable{
         return columns;
     }
 
-    public void setColumns(int columns) {
+    public void setColumns(Integer columns) {
         this.columns = columns;
     }
 
@@ -113,7 +113,7 @@ public class CreateShowBean implements Serializable{
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 

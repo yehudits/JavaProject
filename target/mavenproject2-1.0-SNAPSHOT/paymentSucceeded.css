@@ -1,0 +1,52 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 29 באוג׳ 2021, 19:22:17
+    Author     : HP
+*/
+
+.paymentSucceededWrapper {
+    margin-top: 200px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    align-items: center;
+}
+
+.detailContent {
+    display: flex;
+    flex-direction: column;
+}
+
+.paymentTitle{
+    font-size: 30px;
+    font-weight: bold;
+    border-bottom: 2px solid #f2e962;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    width: 400px;
+}
+
+
+element.style {
+}
+.section {
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.05);
+    border: 1px solid #faf9f9;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    border-bottom: 1px solid #e1e0e0;
+    width: 400px;
+}
+
+.detailTitle{
+    font-weight: 600;
+    margin-bottom: 10px;
+}

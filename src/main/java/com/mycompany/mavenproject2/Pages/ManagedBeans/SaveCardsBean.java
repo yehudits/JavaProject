@@ -29,7 +29,8 @@ import org.apache.commons.lang3.RandomStringUtils;
 public class SaveCardsBean implements Serializable{
 
     private String cardNum,ticketNotSaved="";
-    private int cvv,cardMonth,cardYear,row,column,showId,userId;
+    private int row,column,showId,userId,price;
+    private Integer cvv,cardMonth,cardYear;
     private String showName, date, time,shortId;
     private SeatsService SeatsService;
     private LoginProcess LoginProcess;
@@ -49,6 +50,7 @@ public class SaveCardsBean implements Serializable{
         this.chosenSeats = SeatsService.getChosenSeats();
         this.time = ShowDetailsService.getShow().getTime();
         this.shortId = RandomStringUtils.randomAlphanumeric(8); 
+        this.price = ShowDetailsService.getShow().getPrice();
     }
 
     public int getShowId() {
@@ -136,15 +138,15 @@ public class SaveCardsBean implements Serializable{
     }
 
 
-    public int getCvv() {
+    public Integer getCvv() {
         return cvv;
     }
 
-    public int getCardMonth() {
+    public Integer getCardMonth() {
         return cardMonth;
     }
 
-    public int getCardYear() {
+    public Integer getCardYear() {
         return cardYear;
     }
 
@@ -154,15 +156,15 @@ public class SaveCardsBean implements Serializable{
         this.cardNum = cardNum;
     }
 
-    public void setCvv(int cvv) {
+    public void setCvv(Integer cvv) {
         this.cvv = cvv;
     }
 
-    public void setCardMonth(int cardMonth) {
+    public void setCardMonth(Integer cardMonth) {
         this.cardMonth = cardMonth;
     }
 
-    public void setCardYear(int cardYear) {
+    public void setCardYear(Integer cardYear) {
         this.cardYear = cardYear;
     }
 
@@ -180,6 +182,14 @@ public class SaveCardsBean implements Serializable{
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
     
     

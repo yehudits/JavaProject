@@ -8,6 +8,7 @@
     <h:head>
         <title>Facelet Title</title>
         <link rel="stylesheet" type="text/css" href="topNav.css"/>
+        <link rel="stylesheet" type="text/css" href="paymentSucceeded.css"/>
     </h:head>
     <h:body>
         <h:form>
@@ -24,7 +25,9 @@
             </div>
         </h:form>
 
-        <span>payment succeeded :)</span>
+        
+        <div class="paymentSucceededWrapper">
+            <span class="paymentTitle">payment succeeded :)</span>
         
         
                     <div class="section userDetails">
@@ -38,19 +41,23 @@
             <div class="section showDetails">
                 <span class="detailTitle">show details:</span>
                 <div class="detailContent">
-                    <span>show name: #{saveCardsBean.showName}</span>
-                    <span>show id #{saveCardsBean.showId}</span>
-                    <ui:repeat var="seat" value="#{saveCardsBean.chosenSeats}" varStatus="status">
-                        <span>row #{seat.get(0)}</span>
-                        <span>column #{seat.get(1)}</span>
-                    </ui:repeat>
-                    <span>date #{saveCardsBean.date}</span>
-
-
+                        <span>show name: #{saveCardsBean.showName}</span>
+                        <span>price #{saveCardsBean.price}</span>
+                        <span>date #{saveCardsBean.date}</span>
+                        <span>time #{saveCardsBean.time}</span>
                 </div>
             </div>
+            <div class="section seatsDetails">
+                <span class="detailTitle">chosen seats:</span>
+                <ui:repeat var="seat" value="#{saveCardsBean.chosenSeats}" varStatus="status">
+                    <span class="detailSpan">seat number #{seat.get(1)} in row #{seat.get(0)}</span>
+                </ui:repeat>
 
-        
+
+               
+            </div>
+
+        </div>
     </h:body>
 </html>
 
