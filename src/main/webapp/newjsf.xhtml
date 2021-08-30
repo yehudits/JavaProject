@@ -23,16 +23,21 @@
              <div class="loginContent">
 
 
-                <h:inputText class="inputText" a:placeholder="User Name" id="username" value="#{loginBean.name}" required="false" requiredMessage="Username is required" /><br/>  
+                <h:inputText class="inputText" a:placeholder="User Name" id="username" value="#{loginBean.name}" required="false" requiredMessage="Username is required" />
+                
+                <br/>  
 
 
                 <h:inputText class="inputText" a:placeholder="Email" id="email" value="#{loginBean.email}" required="false" requiredMessage="Email is required" rendered="#{loginBean.isNewUser()}" /><br/>  
 
                 <h:inputText class="inputText" a:placeholder="password" id="password" value="#{loginBean.password}" required="false" requiredMessage="Password is required"/><br/>  
-                <h:inputText class="inputText" a:placeholder="confirm password" id="confirmPassword" value="#{loginBean.confirmPassword}" required="false" requiredMessage="Password is required" rendered="#{loginBean.isNewUser()}"/><br/>  
+                <h:inputText class="inputText" a:placeholder="confirm password" id="confirmPassword" value="#{loginBean.confirmPassword}" required="false" requiredMessage="Password is required" rendered="#{loginBean.isNewUser()}"/>
+                
+                  <h:outputText style="color: red" value="#{loginBean.errorMessage}"/>
+                <br/>  
 
                 <h:commandButton class="submit-button" id="submit-button" value="Submit" action="#{loginBean.onSubmit()}"/>  
-                
+              
 
             </div>
             </h:form>  

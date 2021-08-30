@@ -1,4 +1,4 @@
-        package com.mycompany.mavenproject2.LoginProcess;
+package com.mycompany.mavenproject2.LoginProcess;
 
 
 import com.mycompany.mavenproject2.DB.DBConnector;
@@ -9,11 +9,14 @@ import com.mycompany.mavenproject2.Enums.UserType;
 
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.inject.Inject;
 
 public class LoginProcess {
     @Inject private DBConnector dbConnector;
-
+            public static final Pattern VALID_EMAIL_ADDRESS_REGEX = 
+    Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
     private static User user;
     private static boolean userType;
     
@@ -118,17 +121,22 @@ public class LoginProcess {
         return isSignUpSuccedded;
     }
     
-    public boolean userNameExist(String userName){
+    public boolean isUserNameExist(String userName){
         Statement statement = null;
-        boolean userNameExist = true;
+        boolean userNameExist = false;
 
-        try{
+        try{ if(dbConnector == null){
+                dbConnector = new DBConnector();
+            }
             statement = dbConnector.getStatement();
             String q = "select * from app.\"user\"  where \"name\" = '"+userName+"'";
             ResultSet rs = statement.executeQuery(q);
+            while(rs.next()){
+                return true;
+            }
             int size = rs.getRow();
             if(size>0){
-                userNameExist= false;
+                userNameExist= true;
             }
         }
         catch(Exception e){
@@ -137,6 +145,36 @@ public class LoginProcess {
         return userNameExist;
     }
 
+        public boolean isEmailAddressExist(String email){
+        Statement statement = null;
+        boolean emailExist = false;
+
+        try{
+             if(dbConnector == null){
+                dbConnector = new DBConnector();
+            }
+            statement = dbConnector.getStatement();
+            String q = "select * from app.\"user\"  where \"email\" = '"+email+"'";
+            ResultSet rs = statement.executeQuery(q);
+            while(rs.next()){
+                return true;
+            }
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        return emailExist;
+    }
+    
+        public boolean isEmailValid(String email){
+
+
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(email);
+        return matcher.find();
+
+        }
+    
+        
     public int addAdmin(String name,String email){
         //Query search for user
         
