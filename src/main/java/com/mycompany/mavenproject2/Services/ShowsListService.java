@@ -29,7 +29,7 @@ public class ShowsListService {
         try{
            
             Statement s = this.dbConnector.getStatement();
-            ResultSet rs = s.executeQuery("select * from show");
+            ResultSet rs = s.executeQuery("select * from show where CURRENT_DATE <= date ");
             while (rs.next()){
                 shows.add(new Show(rs.getInt("id"),
                         rs.getString("show_name"),

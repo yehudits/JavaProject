@@ -44,6 +44,7 @@ public class LoginBean implements Serializable{
     private String email;
     private String errorPage="";
 
+    private String errorMessage="";
     public String getErrorPage() {
         return errorPage;
     }
@@ -54,25 +55,40 @@ public class LoginBean implements Serializable{
     private LoginType loginType = LoginType.SIGNIN;
 
     public String onSubmit(){
+        this.errorMessage ="";
         if (loginType ==LoginType.SIGNIN){
             boolean isSignInSuccsedded = loginProcess.signIn(new User(name, password, email));
             if(isSignInSuccsedded==false){
-                this.errorPage="sign in failed";
-                return "errorPage.xhtml";
+                errorMessage="user name or password invalid";
+                return "";
             }
         }
         else {
             if (loginType == LoginType.SIGNUP){
-                if(this.password.equals(this.confirmPassword) && loginProcess.userNameExist(this.name)){
+                if(!loginProcess.isEmailValid(email)){
+                      this.errorMessage="email address is invalid";
+                        return "";
+                }
+                if(this.password.equals(this.confirmPassword)){
+                    if(loginProcess.isUserNameExist(this.name)){
+                          this.errorMessage="user name already exist. Please try another name";
+                        return "";
+                    }
+                    if(loginProcess.isEmailAddressExist(this.email)){
+                          this.errorMessage="email address already exist. Please try to sign in or use another email.";
+                        return "";
+                    }
+                    
+                    
                     boolean isSignUpSuccsedded = loginProcess.signUp(new User( name, password, email));
                     if(isSignUpSuccsedded==false){
-                        this.errorPage="sign up failed";
-                        return "errorPage.xhtml";
+                        this.errorMessage="sign up failed";
+                        return "";
                     }
                 }
                 else{
-                    this.errorPage="confirm password is not equal to password";
-                    return "errorPage.xhtml";
+                    this.errorMessage="passwords are not match";
+                    return "";
                 }
             }
         }
@@ -154,7 +170,12 @@ public class LoginBean implements Serializable{
         return enabled;
     }
     
+    public String getErrorMessage(){
+        return errorMessage;
+    }
+    
     public void changeLoginType(){
+        this.errorMessage ="";
         System.out.println("hello hellllllllllllllllllllll");
         if(loginType==LoginType.SIGNIN){
             loginType=LoginType.SIGNUP;
