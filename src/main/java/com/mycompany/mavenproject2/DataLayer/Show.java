@@ -10,6 +10,14 @@ public class Show {
         this.id = id;
         this.name = name;
     }
+    
+    public Show(int id, String name,String date,String time) {
+        this.id = id;
+        this.name = name;
+        this.date = date;
+        this.time = time;
+    }
+
 
     public Show(int id, String name, String adress, String date, int ownerId, String description, int rows, int columns, int price, String url,String time) {
         this.id = id;

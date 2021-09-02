@@ -2,11 +2,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f = "http://java.sun.com/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>shows list</title>
-        <link rel="stylesheet" type="text/css" href="showsList.css"/>
+        <title>chart</title>
         <link rel="stylesheet" type="text/css" href="topNav.css"/>
+        <link rel="stylesheet" type="text/css" href="showsChart.css"/>
     </h:head>
     <h:body>
         <h:form>
@@ -23,25 +25,25 @@
                     </div>
             </div>
         </h:form>
-        <div class="page_wrapper">
-            <span class="page_title">Get Your Ticket</span>
-            <h:form id="user-form">  
-                <div class="all_shows_wrapper">
-                    <ui:repeat var="show" value="#{showsListBean.shows}" varStatus="status">
-                        <div class="show_wrapper">
-                            <img src="#{show.imgUrl}" alt="alt"/>
-                            <span class="show_details_name">#{show.name}</span>
-                            <span class="show_details_description">#{show.description}</span>
-                            <span class="show_details_date">#{show.date}</span>
-                            <span class="show_details_date">#{show.time}</span>
 
-                            <!--<h:commandButton id="submit-button" value="Submit" action="#{showsListBean.onSubmit()}"/>  -->
-                            <h:commandButton class="show_details_btn" value ="Buy Tickets" action="#{showsListBean.navigateToDetails(show.id)}"/>
-                        </div>
-
-                    </ui:repeat>
-                </div>
-            </h:form>
+        <div class="chart_wrapper">
+            <table class="chart_all_tickets">
+                <tr class="table_th">
+                    <td>show name</td>
+                    <td>date</td>
+                    <td>time</td>
+                    <td>seat and row</td> 
+    
+                </tr>
+                <ui:repeat var="ticket" value="#{showsChartBean.showToSeats}" varStatus="status">
+                    <tr class="ticket_details">
+                        <td>#{ticket.name}</td>
+                        <td>#{ticket.date}</td>
+                        <td>#{ticket.time}</td>
+                        <td>seat #{ticket.getCol()} in row #{ticket.getRow()}</td> 
+                    </tr>
+                </ui:repeat>
+            </table>
         </div>
     </h:body>
 </html>

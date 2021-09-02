@@ -1,0 +1,44 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2 בספט׳ 2021, 16:22:15
+    Author     : HP
+*/
+
+.chart_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 150px;
+
+}
+
+.table_th {
+    background: #f2e962;
+    font-weight: bold;
+}
+
+.chart_all_tickets {
+    width: 750px;
+    border-collapse: collapse;
+}
+
+.ticket_details td,
+.table_th td{
+    padding: 10px;
+    font-size: 18px;
+    height: 30px;
+    text-align: center
+}
+
+.ticket_details,
+.table_th{
+    border: 1px solid #d7d3d3;
+}
+
+.ticket_details:hover{
+    background: #d7d3d3
+}

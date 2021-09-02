@@ -7,12 +7,15 @@ package com.mycompany.mavenproject2.Services;
 
 import com.mycompany.mavenproject2.DB.DBConnector;
 import com.mycompany.mavenproject2.DataLayer.Seat;
+import com.mycompany.mavenproject2.DataLayer.Ticket;
+import com.mycompany.mavenproject2.DataLayer.Show;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
+import java.sql.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -89,7 +92,7 @@ public class SeatsService {
         showId=sId;
         userId=uId;
         shortId = shId;
-        boolean res = saveChosenSeat();
+        boolean res = saveChosenSeat(shId);
 
         /*for(int i=0;i<chosenSeats.size();i++){
             boolean res = saveChosenSeat(chosenSeats.get(i).get(0),chosenSeats.get(i).get(1));
@@ -101,18 +104,19 @@ public class SeatsService {
     }
 
     
-    public boolean saveChosenSeat(){
+    public boolean saveChosenSeat(String Short_id){
         
         try{
             Connection conn = this.dbConnector.getConnection();
-            String query = " insert into  app.\"SEAT\"   (SHOW_ID, USER_ID, ROW_NUM,COLUMNS)"
-            + " values ( ?, ?, ?, ?)";
+            String query = " insert into  app.\"SEAT\"   (SHOW_ID, USER_ID, ROW_NUM,COLUMNS, ORDER_TOKEN)"
+            + " values ( ?, ?, ?, ?, ?)";
             PreparedStatement preparedStmt = conn.prepareStatement(query);
             for(int i=0;i<chosenSeats.size();i++){
                 preparedStmt.setInt (1,showId);
                 preparedStmt.setInt(2,userId);
                 preparedStmt.setInt(3,chosenSeats.get(i).get(0));
                 preparedStmt.setInt(4,chosenSeats.get(i).get(1));
+                preparedStmt.setString(5, Short_id);
                 preparedStmt.execute();
                 preparedStmt.addBatch();
             }
@@ -153,6 +157,46 @@ public class SeatsService {
         return chosenSeats;
     }
     
-    
+    public ArrayList<Ticket> getSavedSeatsForUser(int id){
+         ArrayList<Ticket> showToSeats = new ArrayList<Ticket> ();
+
+         try{
+            Connection c = dbConnector.getConnection();
+            PreparedStatement s = c.prepareStatement("select * from app.\"SEAT\" where USER_ID = ?");
+            s.setInt(1, id);
+            ResultSet rs = s.executeQuery();
+            int cnt=0;
+            while (rs.next()){
+                cnt++;
+                int row = rs.getInt("ROW_NUM");
+                int col = rs.getInt("COLUMNS");
+                int curShowId = rs.getInt("SHOW_ID");
+                try{
+                    PreparedStatement s2 = c.prepareStatement("select * from app.\"SHOW\" where ID = ?");
+                    s2.setInt(1, curShowId);
+                    ResultSet rs2 = s2.executeQuery();
+                    if(rs2.next()){
+                        Ticket ticket=new Ticket(curShowId,
+                                        rs2.getString("SHOW_NAME"),
+                                        rs2.getString("DATE"),
+                                        rs2.getString("HOUR"),
+                                        row,col);
+                        showToSeats.add(ticket);
+                    }
+                    //    public Ticket(int id, String name,String date,String time,int row, int col) {
+                }
+                catch(SQLException e){
+                    System.out.println(e);
+                }   
+
+            }
+            System.out.print(cnt);
+            return showToSeats;
+        }
+        catch(SQLException e){
+            System.out.println(e);
+        }
+         return null;
+    }
     
 }
