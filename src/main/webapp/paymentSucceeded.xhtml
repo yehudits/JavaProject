@@ -28,7 +28,8 @@
         
         <div class="paymentSucceededWrapper">
             <span class="paymentTitle">payment succeeded :)</span>
-        
+            <span>invitation identifier:   "#{approval}"</span>
+
         
                     <div class="section userDetails">
                 <span class="detailTitle">user details:</span>
@@ -52,7 +53,6 @@
                 <ui:repeat var="seat" value="#{saveCardsBean.chosenSeats}" varStatus="status">
                     <span class="detailSpan">seat number #{seat.get(1)} in row #{seat.get(0)}</span>
                 </ui:repeat>
-
 
                
             </div>

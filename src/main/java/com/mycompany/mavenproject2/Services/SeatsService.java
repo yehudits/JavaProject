@@ -88,7 +88,7 @@ public class SeatsService {
          return savedSeats;
     }  
     
-    public boolean saveChosenSeats(int sId,int uId,String shId){
+    public String saveChosenSeats(int sId,int uId,String shId){
         showId=sId;
         userId=uId;
         shortId = shId;
@@ -100,7 +100,7 @@ public class SeatsService {
                 return false;
             }
         }*/
-        return res;
+        return shId;
     }
 
     
@@ -170,6 +170,7 @@ public class SeatsService {
                 cnt++;
                 int row = rs.getInt("ROW_NUM");
                 int col = rs.getInt("COLUMNS");
+                String short_Id = rs.getString("ORDER_TOKEN");
                 int curShowId = rs.getInt("SHOW_ID");
                 try{
                     PreparedStatement s2 = c.prepareStatement("select * from app.\"SHOW\" where ID = ?");
@@ -180,7 +181,7 @@ public class SeatsService {
                                         rs2.getString("SHOW_NAME"),
                                         rs2.getString("DATE"),
                                         rs2.getString("HOUR"),
-                                        row,col);
+                                        row,col,short_Id);
                         showToSeats.add(ticket);
                     }
                     //    public Ticket(int id, String name,String date,String time,int row, int col) {

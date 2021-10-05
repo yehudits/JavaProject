@@ -33,6 +33,7 @@
                     <td>date</td>
                     <td>time</td>
                     <td>seat and row</td> 
+                    <td> invitation identifier </td>
     
                 </tr>
                 <ui:repeat var="ticket" value="#{showsChartBean.showToSeats}" varStatus="status">
@@ -41,6 +42,7 @@
                         <td>#{ticket.date}</td>
                         <td>#{ticket.time}</td>
                         <td>seat #{ticket.getCol()} in row #{ticket.getRow()}</td> 
+                        <td>#{ticket.shortId}</td> 
                     </tr>
                 </ui:repeat>
             </table>

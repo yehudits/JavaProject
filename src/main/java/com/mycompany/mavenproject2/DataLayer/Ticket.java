@@ -6,19 +6,21 @@ public class Ticket {
         
     }
     
-    public Ticket(int id, String name,String date,String time,int row, int col) {
+    public Ticket(int id, String name,String date,String time,int row, int col,String shortId) {
         this.id = id;
         this.name = name;
         this.date = date;
         this.time = time;
         this.col = col;
         this.row = row;
+        this.shortId = shortId;
     }
 
     
     
     
     private int id;
+    private String shortId;
     private String name;
     private String adress,time;
     private String date;
@@ -90,6 +92,14 @@ public class Ticket {
 
     public void setCol(int col) {
         this.col = col;
+    }
+
+    public String getShortId() {
+        return shortId;
+    }
+
+    public void setShortId(String shortId) {
+        this.shortId = shortId;
     }
     
     

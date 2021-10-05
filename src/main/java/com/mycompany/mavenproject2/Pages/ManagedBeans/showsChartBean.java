@@ -38,7 +38,6 @@ public class showsChartBean implements Serializable{
         this.SeatsService = new SeatsService();
         this.id = LoginProcess.getUser().getId();
         this.showToSeats = this.SeatsService.getSavedSeatsForUser(this.id);
-        printRowCols();
     }
 
     public ArrayList<Ticket> getShowToSeats() {
@@ -49,17 +48,5 @@ public class showsChartBean implements Serializable{
         this.showToSeats = showToSeats;
     }
     
-    public void printRowCols(){
-        for(int i=0;i<this.showToSeats.size();i++){
-            System.out.print(this.showToSeats.get(i).getCol()+"  ");
-            System.out.println(this.showToSeats.get(i).getRow());
-        }
-    }
-
-    
-    
-    
-
-    
-    
+   
 }
