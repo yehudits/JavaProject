@@ -49,7 +49,7 @@ public class SaveCardsBean implements Serializable{
         this.userId = LoginProcess.getUser().getId();
         this.chosenSeats = SeatsService.getChosenSeats();
         this.time = ShowDetailsService.getShow().getTime();
-        this.shortId = "";
+        this.shortId = this.SeatsService.getShortId();
         this.price = ShowDetailsService.getShow().getPrice();
     }
 

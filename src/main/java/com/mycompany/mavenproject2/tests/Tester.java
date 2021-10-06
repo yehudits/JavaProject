@@ -31,7 +31,7 @@ public class Tester {
     
     private static DBConnector dbConnector;
     public static void main(String[] args) throws SQLException{
-        String s =RandomStringUtils.randomAlphanumeric(8);
+        String s = RandomStringUtils.randomAlphanumeric(8);
 
 
             Statement statement = dbConnector.getStatement();

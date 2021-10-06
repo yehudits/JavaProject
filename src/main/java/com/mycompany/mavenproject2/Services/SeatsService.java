@@ -33,7 +33,7 @@ public class SeatsService {
     private static int chosenColumn;
     private static int showId;
     private static int userId;
-    private static String shortId;
+    public static String shortId;
     private static ArrayList<ArrayList<Integer>> chosenSeats = new ArrayList<ArrayList<Integer>> ();
 
     public SeatsService(){
@@ -88,11 +88,11 @@ public class SeatsService {
          return savedSeats;
     }  
     
-    public boolean saveChosenSeats(int sId,int uId,String shId){
-        showId=sId;
-        userId=uId;
-        shortId = shId;
-        boolean res = saveChosenSeat(shId);
+    public boolean saveChosenSeats(int showId,int uId,String shortId){
+        this.showId=showId;
+        this.userId=uId;
+        this.shortId = shortId;
+        boolean res = saveChosenSeat(shortId);
 
         /*for(int i=0;i<chosenSeats.size();i++){
             boolean res = saveChosenSeat(chosenSeats.get(i).get(0),chosenSeats.get(i).get(1));
@@ -199,4 +199,8 @@ public class SeatsService {
          return null;
     }
     
+    
+    public static String getShortId(){
+        return shortId;
+    }
 }
