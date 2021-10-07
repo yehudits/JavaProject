@@ -50,3 +50,9 @@ run commands on the db in order to create tables:
   "DATE" DATE,
   "SHOW_NAME" VARCHAR(70)
   );
+
+In order to launch the project, you must at least one user in the DB (admin user, because new shows requires administartors to create them).
+So before running the project you should add a primary user with the command:‏
+- insert an administrator:
+insert into app."user" ("name","email","password","userType")
+values ('admin','admin@gmail.com','pass',true);
