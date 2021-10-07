@@ -17,13 +17,14 @@
         <h:form>
             <div class="top_nav">
                     <div class="user_name_and_signout">
-                        <h:commandButton class="sign_out" value="sign out" action="newjsf.xhtml"/>                        
+                        <h:commandButton class="sign_out" value="sign out" action="newjsf.xhtml"/>
                         <span class="user_name">#{showsListBean.loginProcess.user.name}</span>
                     </div>
                     <div class="admin_btns">
                         <h:commandButton class="top_nav_btns" value="add new administrator" rendered="#{showsListBean.loginProcess.userType}" action="#{showsListBean.addShowOrManager(0)}"/>
                         <h:commandButton class="top_nav_btns"  value="add new show" rendered="#{showsListBean.loginProcess.userType}"  action="#{showsListBean.addShowOrManager(1)}"/>
                         <h:commandButton class="top_nav_btns"  value="return to shows list" action="showsList.xhtml"/>
+                        <h:commandButton class="top_nav_btns"  value="cart" action="showsChart.xhtml"/>
                     </div>
             </div>
         </h:form>

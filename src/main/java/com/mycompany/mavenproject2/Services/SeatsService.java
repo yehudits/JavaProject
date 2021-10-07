@@ -33,7 +33,7 @@ public class SeatsService {
     private static int chosenColumn;
     private static int showId;
     private static int userId;
-    private static String shortId;
+    public static String shortId;
     private static ArrayList<ArrayList<Integer>> chosenSeats = new ArrayList<ArrayList<Integer>> ();
 
     public SeatsService(){
@@ -88,11 +88,11 @@ public class SeatsService {
          return savedSeats;
     }  
     
-    public String saveChosenSeats(int sId,int uId,String shId){
-        showId=sId;
-        userId=uId;
-        shortId = shId;
-        boolean res = saveChosenSeat(shId);
+    public boolean saveChosenSeats(int showId,int uId,String shortId){
+        this.showId=showId;
+        this.userId=uId;
+        this.shortId = shortId;
+        boolean res = saveChosenSeat(shortId);
 
         /*for(int i=0;i<chosenSeats.size();i++){
             boolean res = saveChosenSeat(chosenSeats.get(i).get(0),chosenSeats.get(i).get(1));
@@ -100,7 +100,7 @@ public class SeatsService {
                 return false;
             }
         }*/
-        return shId;
+        return res;
     }
 
     
@@ -170,7 +170,7 @@ public class SeatsService {
                 cnt++;
                 int row = rs.getInt("ROW_NUM");
                 int col = rs.getInt("COLUMNS");
-                String short_Id = rs.getString("ORDER_TOKEN");
+                String sId = rs.getString("ORDER_TOKEN");
                 int curShowId = rs.getInt("SHOW_ID");
                 try{
                     PreparedStatement s2 = c.prepareStatement("select * from app.\"SHOW\" where ID = ?");
@@ -181,7 +181,7 @@ public class SeatsService {
                                         rs2.getString("SHOW_NAME"),
                                         rs2.getString("DATE"),
                                         rs2.getString("HOUR"),
-                                        row,col,short_Id);
+                                        row,col,sId);
                         showToSeats.add(ticket);
                     }
                     //    public Ticket(int id, String name,String date,String time,int row, int col) {
@@ -200,4 +200,8 @@ public class SeatsService {
          return null;
     }
     
+
+    public static String getShortId(){
+        return shortId;
+    }
 }

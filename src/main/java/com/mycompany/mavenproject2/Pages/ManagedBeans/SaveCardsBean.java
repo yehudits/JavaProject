@@ -32,7 +32,6 @@ public class SaveCardsBean implements Serializable{
     private int row,column,showId,userId,price;
     private Integer cvv,cardMonth,cardYear;
     private String showName, date, time,shortId;
-    private static String approval;
     private SeatsService SeatsService;
     private LoginProcess LoginProcess;
     private ArrayList<ArrayList<Integer>> chosenSeats;
@@ -50,7 +49,7 @@ public class SaveCardsBean implements Serializable{
         this.userId = LoginProcess.getUser().getId();
         this.chosenSeats = SeatsService.getChosenSeats();
         this.time = ShowDetailsService.getShow().getTime();
-        this.shortId = RandomStringUtils.randomAlphanumeric(8); 
+        this.shortId = this.SeatsService.getShortId();
         this.price = ShowDetailsService.getShow().getPrice();
     }
 
@@ -117,8 +116,6 @@ public class SaveCardsBean implements Serializable{
         if(this.cardNum.length()==16){
             if(this.cvv>=100 && this.cvv<1000){
                 if(this.cardMonth>0&&this.cardMonth<13 && this.cardYear>2020){//replace it to cur date
-                    String shid = SeatsService.saveChosenSeats(this.showId,this.userId,this.shortId);
-                    approval = shid;
                     this.shortId = RandomStringUtils.randomAlphanumeric(8); 
                     SeatsService.saveChosenSeats(this.showId,this.userId,this.shortId);
                     return "paymentSucceeded.xhtml";
@@ -197,14 +194,6 @@ public class SaveCardsBean implements Serializable{
 
     public void setPrice(int price) {
         this.price = price;
-    }
-
-    public static String getApproval() {
-        return approval;
-    }
-
-    public static void setApproval(String approval) {
-        SaveCardsBean.approval = approval;
     }
     
     
