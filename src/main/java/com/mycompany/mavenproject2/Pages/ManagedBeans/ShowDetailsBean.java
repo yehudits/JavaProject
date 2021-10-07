@@ -135,10 +135,7 @@ public List<List<Float>> get_Matrix() {
    }
    
    public String getSeatContent(int row, int column){
-       if(this.isSeatAlreadyAssigned(row, column)){
-           return "X";
-       }
-       return "";
+       return "X";
    }
    
    public String getSeatColor(int row, int column){
@@ -150,10 +147,10 @@ public List<List<Float>> get_Matrix() {
         addedSeat.add(row);
         addedSeat.add(column);
         if(chosenSeats.contains(addedSeat)){
-            return "#d4cece";
+            return "#d4cece;";
 
        }
-       return "white";
+       return "white; color:transparent;";
    }
    
    public String chooseSeats(){
