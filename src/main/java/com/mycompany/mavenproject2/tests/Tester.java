@@ -11,6 +11,8 @@ package com.mycompany.mavenproject2.tests;
  */
 
 import com.mycompany.mavenproject2.DB.DBConnector;
+import org.apache.commons.lang.RandomStringUtils;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -29,6 +31,9 @@ public class Tester {
     
     private static DBConnector dbConnector;
     public static void main(String[] args) throws SQLException{
+        String s =RandomStringUtils.randomAlphanumeric(8);
+
+
             Statement statement = dbConnector.getStatement();
             ResultSet rs = statement.executeQuery("select id from users where id = user.id");// todo write query
 

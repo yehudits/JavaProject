@@ -16,7 +16,7 @@ import javax.enterprise.context.*;
 import javax.faces.view.ViewScoped;
 import java.io.Serializable;
 import com.mycompany.mavenproject2.LoginProcess.LoginProcess;
-import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang.RandomStringUtils;
 
 
 /**
@@ -106,6 +106,9 @@ public class SaveCardsBean implements Serializable{
         return column;
     }
     
+    public String getShortId(){
+        return shortId;
+    }
     /**
      * Creates a new instance of SaveCardsBean
      */
@@ -116,6 +119,8 @@ public class SaveCardsBean implements Serializable{
                 if(this.cardMonth>0&&this.cardMonth<13 && this.cardYear>2020){//replace it to cur date
                     String shid = SeatsService.saveChosenSeats(this.showId,this.userId,this.shortId);
                     approval = shid;
+                    this.shortId = RandomStringUtils.randomAlphanumeric(8); 
+                    SeatsService.saveChosenSeats(this.showId,this.userId,this.shortId);
                     return "paymentSucceeded.xhtml";
                 }
                 else{

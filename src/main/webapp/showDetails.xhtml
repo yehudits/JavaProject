@@ -45,7 +45,7 @@
 
                     <span class="rows_numbering">#{row}</span>
                     <ui:repeat var="column" value="#{showDetailsBean.cols}" varStatus="status">
-                        <h:commandButton class="show_seats" value="#{column}" style="background-color:#{showDetailsBean.isSeatAssigned(row, column)}" action="#{showDetailsBean.addSeatToSavedSeats(row, column)}" />                        
+                        <h:commandButton class="show_seats" value="#{showDetailsBean.getSeatContent(row, column)}" style="background-color:#{showDetailsBean.getSeatColor(row, column)}" action="#{showDetailsBean.addSeatToSavedSeats(row, column)}" />                        
                     </ui:repeat>
                     <br></br>
                 </ui:repeat>

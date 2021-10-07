@@ -123,14 +123,29 @@ public List<List<Float>> get_Matrix() {
    }
    
    
-   public String isSeatAssigned(int row, int column){
+   private boolean isSeatAlreadyAssigned(int row, int column){
        if(this.savedSeats == null){
            this.fetchSavedSeats();
        }
        if(this.savedSeats.get(row)!= null){
            if(this.savedSeats.get(row).contains(column)){
-               return "#f2e962; cursor: not-allowed;pointer-events: none;";            }
+               return true;            }
        }
+        return false;
+   }
+   
+   public String getSeatContent(int row, int column){
+       if(this.isSeatAlreadyAssigned(row, column)){
+           return "X";
+       }
+       return "";
+   }
+   
+   public String getSeatColor(int row, int column){
+        boolean isSeatAlreadyAssigned = this.isSeatAlreadyAssigned(row, column);
+           if(isSeatAlreadyAssigned == true){
+               return "#f2e962; cursor: not-allowed;pointer-events: none;";            }
+       
         ArrayList<Integer> addedSeat = new ArrayList<Integer>();
         addedSeat.add(row);
         addedSeat.add(column);
